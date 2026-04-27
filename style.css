@@ -154,6 +154,25 @@ section { padding: 100px 0; }
   font-size: .82rem; color: var(--text2);
 }
 
+/* avatar */
+.hero-avatar-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; margin-bottom: 24px;
+}
+.hero-avatar {
+  width: 160px; height: 160px; border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 6px rgba(88,166,255,.15), var(--shadow);
+  transition: var(--transition);
+}
+.hero-avatar:hover { transform: scale(1.04); box-shadow: 0 0 0 8px rgba(88,166,255,.22), var(--shadow); }
+.hero-avatar-badge {
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 5px 14px; border-radius: 20px;
+  font-size: .78rem; color: var(--text2);
+}
+
 /* code card */
 .code-card {
   background: var(--bg2); border: 1px solid var(--border);
@@ -369,7 +388,8 @@ footer a:hover { color: var(--accent); }
     text-align: center;
   }
   .hero-actions, .hero-badges { justify-content: center; }
-  .hero-visual { display: none; }
+  .hero-visual { display: flex; flex-direction: column; align-items: center; }
+  .code-card { display: none; }
   .scroll-down { display: none; }
 
   .about-grid  { grid-template-columns: 1fr; }
