@@ -1,26 +1,41 @@
-/* ─── NAVBAR scroll effect ─── */
+/* ─── NAVBAR scroll effect (rAF-throttled) ──────────────── */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.style.background = window.scrollY > 40
-    ? 'rgba(13,17,23,0.97)'
-    : 'rgba(13,17,23,0.85)';
-});
+let scrollTicking = false;
 
-/* ─── HAMBURGER menu ─── */
+function updateNavbarBg() {
+  navbar.style.background = window.scrollY > 40
+    ? 'rgba(13,17,23,0.96)'
+    : 'rgba(13,17,23,0.85)';
+  scrollTicking = false;
+}
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    requestAnimationFrame(updateNavbarBg);
+    scrollTicking = true;
+  }
+}, { passive: true });
+
+/* ─── HAMBURGER menu ────────────────────────────────────── */
 const hamburger = document.getElementById('hamburger');
 const navLinks  = document.querySelector('.nav-links');
+
 hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
-});
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+  const open = navLinks.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', String(open));
 });
 
-/* ─── ACTIVE nav link on scroll ─── */
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ─── ACTIVE nav link tracking ──────────────────────────── */
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-const observer = new IntersectionObserver(entries => {
+
+const activeObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navAnchors.forEach(a => a.classList.remove('active'));
@@ -29,11 +44,12 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => observer.observe(s));
 
-/* ─── FADE-IN on scroll ─── */
+sections.forEach(s => activeObserver.observe(s));
+
+/* ─── FADE-IN on scroll ─────────────────────────────────── */
 const fadeEls = document.querySelectorAll(
-  '.timeline-card, .project-card, .edu-card, .stat, .highlight-list li, .skill-group'
+  '.timeline-card, .project-card, .rec-card, .edu-card, .stat, .impact-pillars li, .skill-group'
 );
 fadeEls.forEach(el => el.classList.add('fade-in'));
 
@@ -47,7 +63,12 @@ const fadeObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 fadeEls.forEach(el => fadeObserver.observe(el));
 
-/* ─── STAGGERED fade-in for grids ─── */
-document.querySelectorAll('.projects-grid .project-card, .edu-grid .edu-card').forEach((el, i) => {
-  el.style.transitionDelay = `${i * 80}ms`;
-});
+/* staggered fade for grid children */
+document.querySelectorAll('.projects-grid .project-card, .recs-grid .rec-card, .edu-grid .edu-card, .impact-stats .stat')
+  .forEach((el, i) => {
+    el.style.transitionDelay = `${i * 70}ms`;
+  });
+
+/* ─── DYNAMIC year in footer ────────────────────────────── */
+const yearEl = document.getElementById('footer-year');
+if (yearEl) yearEl.textContent = `© ${new Date().getFullYear()} Abul Hasan`;
