@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Abul Hasan — Senior Staff Software Engineer with 13+ years building nation-scale frontends. Currently leading Angular architecture at Cefalo for the Norwegian National Archive (public portal serving 1M+ users). Previously owned the FE platform behind Swiss Life Select fintech (100K+ EU users)." />
+  <meta name="description" content="Abul Hasan — Senior Staff Software Engineer with 13+ years building production frontends — currently the frontend of a nation-scale government platform at Cefalo for the Norwegian National Archive (public portal serving 1M+ users). Previously owned the FE platform behind Swiss Life Select fintech (100K+ EU users)." />
   <meta name="keywords" content="Abul Hasan, Senior Staff Software Engineer, Frontend Architect, Angular, React, NestJS, Kotlin, Spring Boot, .NET Core, Microservices, Cefalo, Norwegian National Archive, Swiss Life Select" />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="Abul Hasan — Senior Staff Software Engineer" />
-  <meta property="og:description" content="13+ years architecting frontends for nation-scale platforms. Norwegian National Archive · Swiss Life Select · 100K+ EU users." />
+  <meta property="og:description" content="13+ years of production frontend architecture. Norwegian National Archive (1M+ portal users) · Swiss Life Select (100K+ EU users)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://ahasan09.github.io/" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Abul Hasan — Senior Staff Software Engineer" />
-  <meta name="twitter:description" content="13+ years architecting frontends for nation-scale platforms. Norwegian National Archive · Swiss Life Select · 100K+ EU users." />
+  <meta name="twitter:description" content="13+ years of production frontend architecture. Norwegian National Archive (1M+ portal users) · Swiss Life Select (100K+ EU users)." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/" />
@@ -212,7 +212,7 @@
         <div class="impact-prose">
           <h3 class="kicker">How I work</h3>
           <p>
-            At Senior Staff level my job is to make systems that scale and teams that ship. I write production code, lead architectural decisions, and mentor engineers — but the deliverable is always working software, not artifacts.
+            At Senior Staff level my job is to make systems that scale and teams that ship. I write production code, lead architectural decisions, and mentor engineers — but the deliverable is always working software, not artifacts. Every role in my career has run on Agile/Scrum: sprints, retros, and regular releases.
           </p>
 
           <h3 class="kicker">What I'm great at</h3>
@@ -222,7 +222,7 @@
 
           <h3 class="kicker">How I build now</h3>
           <p>
-            I run an agentic development workflow end-to-end: an agent pipeline picks up a Jira ticket, analyzes the requirement, generates a design spec and an implementation plan, implements it, then runs code review and security review — while I direct the architecture and own every merge. I've built custom skills that encode our team's conventions into that pipeline. <a href="case-studies/agentic-workflow.html">Read the case study</a>.
+            I run an agentic development workflow end-to-end: an agent pipeline picks up a Jira ticket, analyzes the requirement, generates a design spec and an implementation plan, implements it, then runs code review and security review — while I direct the architecture and own every merge. Every stage of that pipeline runs as a separate custom skill I built. <a href="case-studies/agentic-workflow.html">Read the case study</a>.
           </p>
         </div>
 
@@ -305,7 +305,7 @@
               <span class="chip chip-strong">Angular</span>
               <span class="chip chip-strong">React</span>
               <span class="chip chip-strong">Kotlin</span>
-              <span class="chip">Java 26</span>
+              <span class="chip">Java 21</span>
               <span class="chip">Spring Boot</span>
               <span class="chip">PostgreSQL</span>
               <span class="chip">MongoDB</span>
@@ -340,8 +340,10 @@
                 <h4 class="case-label">Ownership</h4>
                 <ul>
                   <li>Owned <strong>complex architectural decisions</strong> for the FE platform</li>
+                  <li>Built the <strong>company-wide Angular architecture</strong> (SSR-capable) used by all SELISE teams — shared components and common packages (auth, SSO, SignalR notifications, dynamic datatable, dialog) on internal npm</li>
                   <li>Implemented SSO, multi-tenancy, PWA, push notifications</li>
                   <li>Real-time integrations via Microsoft SignalR + RabbitMQ</li>
+                  <li>Migrated 4 projects from Angular 2 to 12</li>
                   <li>Built complex data dashboards (ChartJS, AG Grid)</li>
                   <li>Led a team of frontend engineers</li>
                 </ul>
@@ -428,17 +430,18 @@
             <span class="chip">Chakra UI</span>
             <span class="chip">Bootstrap</span>
             <span class="chip">PWA</span>
+            <span class="chip">SSR</span>
           </div>
         </div>
 
         <div class="skill-group">
           <h3 class="skill-group-title">Backend</h3>
           <div class="chips">
-            <span class="chip chip-strong">NestJS</span>
+            <span class="chip">NestJS</span>
             <span class="chip chip-strong">Kotlin</span>
             <span class="chip chip-strong">.NET Core</span>
             <span class="chip">Node.js</span>
-            <span class="chip">Java 26</span>
+            <span class="chip">Java 21</span>
             <span class="chip">Spring Boot</span>
             <span class="chip">C#</span>
             <span class="chip">ASP.NET MVC</span>
@@ -553,6 +556,17 @@
           <p class="project-desc">Four years owning frontend architecture: SSO, tenancy isolation, PWA, and real-time delivery at Swiss Life Select.</p>
           <div class="chips chips-tight">
             <span class="chip">Angular</span><span class="chip">.NET Core</span><span class="chip">SignalR</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <header class="project-header">
+            <span class="project-tag">Backend · Integration</span>
+          </header>
+          <h3 class="project-name"><a href="case-studies/archive-middleware.html">A pull-only middleware: publish status behind a rate-limited API</a></h3>
+          <p class="project-desc">The portal used to live-call an external media system's single-item API, storing nothing. A Python middleware with per-item checkpointing replaced that.</p>
+          <div class="chips chips-tight">
+            <span class="chip">Python</span><span class="chip">PostgreSQL</span><span class="chip">Elasticsearch</span>
           </div>
         </article>
 

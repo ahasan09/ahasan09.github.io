@@ -84,7 +84,7 @@
     <article class="cs-article">
       <h2 id="context">Context</h2>
       <p>I led the frontend platform for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, with migration-lead responsibility across five production frontend repositories: the archive management system, the admin app, the archive storage system, the public search app, and the requisition app. Four of these were Angular applications; the requisition app was built in React and was brought up to the latest React release as part of the same modernization effort.</p>
-      <p>The platform serves a production system used by more than 10,000 archivists and members of the public, so the migration had to happen without disrupting a system that was actively in use.</p>
+      <p>The platform serves a production system used by more than 10,000 archivists, plus members of the public, so the migration had to happen without disrupting a system that was actively in use.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
       <p>Two pressures made the migration necessary. Staying on an unsupported Angular version meant losing security patches, and the older version was increasingly blocking library upgrades and slowing down feature delivery.</p>
@@ -109,7 +109,7 @@
 
       <h2 id="decision">Decision &amp; architecture</h2>
       <p>The admin app went first as the pilot. I upgraded it version by version — v14 through v21, not a single jump — with full regression testing at the end. Doing this on the smallest repo first meant I could work through every breaking change on a codebase small enough to fully regress before touching anything else.</p>
-      <p>The single biggest technical hurdle was the Angular Material upgrade: the breaking changes introduced after v14, from the shift to MDC-based components, cost significantly more engineering time than the rest of the framework upgrade combined. Once that was resolved on the pilot, the remaining four repositories were migrated with overlapping timelines rather than sequentially, since the pattern was already de-risked.</p>
+      <p>The single biggest technical call was Angular Material: the breaking changes introduced after v14, from the shift to MDC-based components, would have cost more engineering time than the rest of the framework upgrade combined — so we deliberately kept Material on v14 and deferred the MDC migration rather than let it swallow the timeline. With that decided on the pilot, the remaining four repositories were migrated with overlapping timelines rather than sequentially, since the pattern was already de-risked.</p>
       <p>Alongside the version upgrade, I standardized the engineering setup across all five repositories: the same lint and test configuration, per-repo CI pipelines, Playwright end-to-end suites, PR checks, SonarQube checks, and SBOM checks in CI.</p>
       <figure class="cs-diagram">
         <svg viewBox="0 0 720 300" role="img" aria-label="Diagram: the admin app is upgraded first as a pilot, sequentially from Angular 14 to Angular 21, proving the migration pattern. The same pattern is then applied to the archive management, archive storage, public search, and requisition repositories. All five repositories share one CI standardization layer covering lint and test, Playwright end-to-end tests, SonarQube, and SBOM checks.">
@@ -162,12 +162,12 @@
           <span class="stat-label">Engineers on the team during the migration</span>
         </div>
         <div class="stat">
-          <span class="stat-num">3–4</span>
-          <span class="stat-label">Weeks for the whole migration, start to finish</span>
+          <span class="stat-num">2</span>
+          <span class="stat-label">Months for the whole migration, start to finish</span>
         </div>
       </div>
-      <p>All four Angular repositories were migrated from v14 to v21, and the requisition app was brought up to the latest React release as part of the same effort. The whole migration — pilot plus the four overlapping repos — took three to four weeks in total, delivered by half the original team while feature work on the platform continued.</p>
-      <p>The standardization work outlasted the migration itself: consistent lint, test, Playwright, SonarQube, and SBOM checks across all five repositories are the lasting artifact of this project, not just the version bump. The hardest and most expensive part of the whole effort wasn't the framework upgrade — it was the Angular Material breaking changes on the pilot, which took more time than upgrading Angular itself.</p>
+      <p>All four Angular repositories were migrated from v14 to v21, and the requisition app was brought up to the latest React release as part of the same effort. The whole migration — pilot plus the four overlapping repos — took about two months in total, delivered by half the original team while feature work on the platform continued.</p>
+      <p>The standardization work outlasted the migration itself: consistent lint, test, Playwright, SonarQube, and SBOM checks across all five repositories are the lasting artifact of this project, not just the version bump. The trickiest call of the whole effort wasn't the framework upgrade — it was Angular Material, where the post-v14 MDC breaking changes were expensive enough that pinning Material to v14 and deferring that migration was the right trade.</p>
     </article>
 
     <nav class="cs-next" aria-label="More case studies">

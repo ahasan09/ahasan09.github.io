@@ -647,6 +647,8 @@ section { padding: 110px 0; }
   line-height: 1.6;
   flex: 1;
 }
+.projects-grid .project-card:nth-child(5):last-child { grid-column: 1 / -1; }
+
 .projects-footer {
   margin-top: 40px;
   text-align: center;

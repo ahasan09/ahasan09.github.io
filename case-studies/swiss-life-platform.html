@@ -109,7 +109,7 @@
       </div>
 
       <h2 id="decision">Decision &amp; architecture</h2>
-      <p>The core of the architecture was tenancy through separate builds on a shared component library: one shared codebase of components and logic, with four tenant-specific builds, each carrying its own theme, feature flags, routing configuration, and settings. That gave every tenant its own build artifact without forking the product into four repositories.</p>
+      <p>The core of the architecture was tenancy through separate builds on a shared component library: one shared codebase of components and logic, with four tenant-specific builds, each carrying its own theme, feature set, routing configuration, and settings. That gave every tenant its own build artifact without forking the product into four repositories.</p>
       <p>Authentication across the platform's services used OIDC-based single sign-on inside the SPA, so advisors and customers moved across services without re-authenticating. The frontend itself was a PWA, giving advisors and customers an installable, app-like experience in the browser.</p>
       <p>For timely updates, SignalR paired with RabbitMQ delivered live notifications into the UI in real time, with push notifications on top of that. Data-heavy views — the dashboards advisors and customers relied on to see their policies, investments, and plans — were built with Chart.js for visualizations and AG Grid for tabular data. Behind all of this, the backend ran on .NET Core microservices with MongoDB and Redis.</p>
       <figure class="cs-diagram">
