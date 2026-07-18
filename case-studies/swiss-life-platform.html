@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Four years owning the frontend architecture of Swiss Life Select's multi-tenant fintech platform: SSO, tenancy isolation, PWA, and real-time delivery for 100,000+ users across the EU." />
+  <meta name="author" content="Abul Hasan" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="color-scheme" content="dark" />
+
+  <meta property="og:title" content="A Multi-Tenant Fintech Platform for 100K Users Across the EU — Abul Hasan" />
+  <meta property="og:description" content="Four years owning the frontend architecture of Swiss Life Select's multi-tenant fintech platform: SSO, tenancy isolation, PWA, and real-time delivery for 100,000+ users across the EU." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ahasan09.github.io/case-studies/swiss-life-platform.html" />
+  <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="A Multi-Tenant Fintech Platform for 100K Users Across the EU — Abul Hasan" />
+  <meta name="twitter:description" content="Four years owning the frontend architecture of Swiss Life Select's multi-tenant fintech platform: SSO, tenancy isolation, PWA, and real-time delivery for 100,000+ users across the EU." />
+  <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <link rel="canonical" href="https://ahasan09.github.io/case-studies/swiss-life-platform.html" />
+  <link rel="icon" type="image/png" href="../avatar.png" />
+
+  <title>A Multi-Tenant Fintech Platform for 100K Users Across the EU | Abul Hasan</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "A Multi-Tenant Fintech Platform for 100K Users Across the EU",
+    "description": "Four years owning the frontend architecture of Swiss Life Select's multi-tenant fintech platform: SSO, tenancy isolation, PWA, and real-time delivery for 100,000+ users across the EU.",
+    "url": "https://ahasan09.github.io/case-studies/swiss-life-platform.html",
+    "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
+    "datePublished": "2026-07-18"
+  }
+  </script>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ba6b3"/></marker>
+  </svg>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AH<span class="dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#impact">Impact</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Stack</a></li>
+        <li><a href="../index.html#projects">Case Studies</a></li>
+        <li><a href="../index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="cs-hero">
+      <p class="cs-kicker">Case study · Frontend platform · Fintech</p>
+      <h1 class="cs-title">A Multi-Tenant Fintech Platform for 100K Users Across the EU</h1>
+      <p class="cs-summary">Financial advisors and customers across the EU managed policies, investments, and plans on one multi-tenant platform. I owned its frontend architecture for four years.</p>
+      <div class="cs-meta">
+        <span><strong>Role:</strong> Principal Software Engineer — frontend architecture owner</span>
+        <span><strong>Org:</strong> SELISE Digital Platforms · Swiss Life Select</span>
+        <span><strong>Stack:</strong> Angular · .NET Core · SignalR</span>
+      </div>
+    </header>
+
+    <article class="cs-article">
+      <h2 id="context">Context</h2>
+      <p>From 2018 to July 2022, I was Principal Software Engineer at SELISE Digital Platforms, working on Swiss Life Select's platform — a fintech product used across the EU by financial advisors and their customers to manage insurance policies, investments, and financial plans. The platform was multi-tenant and backed by microservices on an application platform-as-a-service (aPaaS) model.</p>
+      <p>I owned the frontend architecture for the platform and led the 12-member frontend team, which sat inside a wider product organization of roughly 20 people.</p>
+
+      <h2 id="problem">Problem &amp; constraints</h2>
+      <p>The platform had to serve four tenants from one product, and the tenants differed in theming, features, routing, and configuration — all four dimensions at once — without forking the codebase per tenant.</p>
+      <p>Advisors and customers also needed secure cross-service access, so single sign-on across the platform's services was a hard requirement, alongside timely delivery of updates and notifications in real time.</p>
+      <p>On top of that, this had to be a long-lived architecture: it needed to keep working as the platform grew and as the team around it changed, not just hold up for an initial launch.</p>
+
+      <h2 id="options">Options considered</h2>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Single app with runtime tenant configuration</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>One deployment serving all four tenants, switching theme, features, routing, and config at runtime based on the tenant. This kept the codebase and deployment count to one, but separate builds gave stronger isolation between tenants, so we rejected this approach in favor of that stronger isolation.</p>
+      </div>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Fully separate application per tenant</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Building and maintaining four independent applications, one per tenant, would have given the strongest possible isolation. But it meant four times the maintenance burden — four codebases to patch, upgrade, and keep in sync with every shared change — and we rejected it as unsustainable.</p>
+      </div>
+      <div class="cs-option chosen">
+        <p class="cs-option-name">Shared component library, separate build per tenant</p>
+        <p class="cs-option-verdict">Chosen</p>
+        <p>Common components and logic lived in a shared library, and each tenant got its own build produced from that library, with its own theming, feature set, routing, and configuration baked in. This gave us isolation at the build level while still reusing the code that didn't need to differ per tenant.</p>
+      </div>
+
+      <h2 id="decision">Decision &amp; architecture</h2>
+      <p>The core of the architecture was tenancy through separate builds on a shared component library: one shared codebase of components and logic, with four tenant-specific builds, each carrying its own theme, feature flags, routing configuration, and settings. That gave every tenant its own build artifact without forking the product into four repositories.</p>
+      <p>Authentication across the platform's services used OIDC-based single sign-on inside the SPA, so advisors and customers moved across services without re-authenticating. The frontend itself was a PWA, giving advisors and customers an installable, app-like experience in the browser.</p>
+      <p>For timely updates, SignalR paired with RabbitMQ delivered live notifications into the UI in real time, with push notifications on top of that. Data-heavy views — the dashboards advisors and customers relied on to see their policies, investments, and plans — were built with Chart.js for visualizations and AG Grid for tabular data. Behind all of this, the backend ran on .NET Core microservices with MongoDB and Redis.</p>
+      <figure class="cs-diagram">
+        <svg viewBox="0 0 720 320" role="img" aria-label="Diagram: a shared component library sits at the base, feeding four separate tenant builds, each with its own theme, features, routing, and configuration. Those tenant builds serve the platform's users. A services layer with OIDC single sign-on and SignalR plus RabbitMQ feeds authentication and live notifications toward the tenant builds and the shared library.">
+          <rect class="diagram-box" x="250" y="15" width="220" height="50"/>
+          <text class="diagram-label" x="360" y="42" text-anchor="middle">100,000+ users</text>
+          <text class="diagram-sub" x="360" y="58" text-anchor="middle">Advisors &amp; customers, EU</text>
+
+          <path class="diagram-arrow" d="M105 95 L270 65"/>
+          <path class="diagram-arrow" d="M275 95 L330 65"/>
+          <path class="diagram-arrow" d="M445 95 L390 65"/>
+          <path class="diagram-arrow" d="M615 95 L450 65"/>
+
+          <rect class="diagram-box" x="30" y="95" width="150" height="64"/>
+          <text class="diagram-label" x="105" y="121" text-anchor="middle">Tenant build 1</text>
+          <text class="diagram-sub" x="105" y="135" text-anchor="middle">Theme · Features</text>
+          <text class="diagram-sub" x="105" y="149" text-anchor="middle">Routing · Config</text>
+
+          <rect class="diagram-box" x="200" y="95" width="150" height="64"/>
+          <text class="diagram-label" x="275" y="121" text-anchor="middle">Tenant build 2</text>
+          <text class="diagram-sub" x="275" y="135" text-anchor="middle">Theme · Features</text>
+          <text class="diagram-sub" x="275" y="149" text-anchor="middle">Routing · Config</text>
+
+          <rect class="diagram-box" x="370" y="95" width="150" height="64"/>
+          <text class="diagram-label" x="445" y="121" text-anchor="middle">Tenant build 3</text>
+          <text class="diagram-sub" x="445" y="135" text-anchor="middle">Theme · Features</text>
+          <text class="diagram-sub" x="445" y="149" text-anchor="middle">Routing · Config</text>
+
+          <rect class="diagram-box" x="540" y="95" width="150" height="64"/>
+          <text class="diagram-label" x="615" y="121" text-anchor="middle">Tenant build 4</text>
+          <text class="diagram-sub" x="615" y="135" text-anchor="middle">Theme · Features</text>
+          <text class="diagram-sub" x="615" y="149" text-anchor="middle">Routing · Config</text>
+
+          <path class="diagram-arrow" d="M150 185 L105 159"/>
+          <path class="diagram-arrow" d="M275 185 L275 159"/>
+          <path class="diagram-arrow" d="M445 185 L445 159"/>
+          <path class="diagram-arrow" d="M570 185 L615 159"/>
+
+          <rect class="diagram-box-accent" x="140" y="185" width="440" height="55"/>
+          <text class="diagram-label" x="360" y="211" text-anchor="middle">Shared component library</text>
+          <text class="diagram-sub" x="360" y="227" text-anchor="middle">Common components &amp; logic, reused per build</text>
+
+          <path class="diagram-arrow" d="M105 265 L105 159"/>
+          <path class="diagram-arrow" d="M615 265 L615 159"/>
+
+          <rect class="diagram-box" x="30" y="265" width="150" height="45"/>
+          <text class="diagram-label" x="105" y="287" text-anchor="middle">OIDC SSO</text>
+          <text class="diagram-sub" x="105" y="301" text-anchor="middle">Auth across services</text>
+
+          <rect class="diagram-box" x="540" y="265" width="150" height="45"/>
+          <text class="diagram-label" x="615" y="287" text-anchor="middle">SignalR + RabbitMQ</text>
+          <text class="diagram-sub" x="615" y="301" text-anchor="middle">Live notifications</text>
+        </svg>
+        <figcaption>A shared component library underpins four independent tenant builds, each with its own theme, features, routing, and config. OIDC SSO and SignalR plus RabbitMQ feed authentication and live notifications toward the tenant builds, which serve the platform's users.</figcaption>
+      </figure>
+
+      <h2 id="outcome">Outcome</h2>
+      <div class="cs-outcome-stats">
+        <div class="stat">
+          <span class="stat-num">100K+</span>
+          <span class="stat-label">Users across the EU</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Tenant builds from one shared codebase</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">4 yrs</span>
+          <span class="stat-label">Owning the frontend architecture</span>
+        </div>
+      </div>
+      <p>The platform served more than 100,000 users across the EU on four tenant builds, all produced from one shared codebase rather than four forked ones. I owned the core frontend architecture decisions for four years, from 2018 to July 2022, and led the 12-member frontend team that built and maintained it through that growth.</p>
+    </article>
+
+    <nav class="cs-next" aria-label="More case studies">
+      <a href="../index.html#projects" class="btn btn-outline">All case studies</a>
+      <a href="angular-migration.html" class="btn btn-outline">Next: Angular 21 migration <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </nav>
+
+  </main>
+
+  <footer>
+    <p>
+      Designed &amp; built by <strong>Abul Hasan</strong> ·
+      <a href="https://github.com/ahasan09/ahasan09.github.io" target="_blank" rel="noopener">View source</a> ·
+      <span id="footer-year"></span>
+    </p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

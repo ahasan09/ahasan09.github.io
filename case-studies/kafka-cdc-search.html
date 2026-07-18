@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta name="author" content="Abul Hasan" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="color-scheme" content="dark" />
+
+  <meta property="og:title" content="CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB — Abul Hasan" />
+  <meta property="og:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ahasan09.github.io/case-studies/kafka-cdc-search.html" />
+  <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB — Abul Hasan" />
+  <meta name="twitter:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <link rel="canonical" href="https://ahasan09.github.io/case-studies/kafka-cdc-search.html" />
+  <link rel="icon" type="image/png" href="../avatar.png" />
+
+  <title>CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB | Abul Hasan</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB",
+    "description": "Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive.",
+    "url": "https://ahasan09.github.io/case-studies/kafka-cdc-search.html",
+    "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
+    "datePublished": "2026-07-18"
+  }
+  </script>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ba6b3"/></marker>
+  </svg>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AH<span class="dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#impact">Impact</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Stack</a></li>
+        <li><a href="../index.html#projects">Case Studies</a></li>
+        <li><a href="../index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="cs-hero">
+      <p class="cs-kicker">Case study · Backend · Data pipeline</p>
+      <h1 class="cs-title">CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB</h1>
+      <p class="cs-summary">Search is only as good as its index freshness. This is how change data capture with Kafka replaced fragile sync approaches for the archive's Elasticsearch-backed search.</p>
+      <div class="cs-meta">
+        <span><strong>Role:</strong> Senior Staff Software Engineer</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Stack:</strong> Kafka · Elasticsearch · Java/Kotlin</span>
+      </div>
+    </header>
+
+    <article class="cs-article">
+      <h2 id="context">Context</h2>
+      <p>I work on the backend for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, across a Java/Kotlin stack backed by PostgreSQL and MongoDB. Elasticsearch powers archive search for both archivists and members of the public, and the pipeline that keeps those search indexes in sync with the source databases is something I designed personally.</p>
+      <p>Search freshness matters here in a very direct way: archivists change records, and the public and other archivists need to be able to search on what just changed, not on a stale snapshot.</p>
+
+      <h2 id="problem">Problem &amp; constraints</h2>
+      <p>Before this architecture existed, the application wrote to Elasticsearch the same way it wrote to the database: dual writes from application code, in the same code path as the database write.</p>
+      <p>That produced two recurring symptoms. First, load spikes — indexing work rode on the same request path as the database write, so search indexing load was coupled directly to application write traffic. Second, missed updates — when one of the two writes failed and the other succeeded, the index quietly drifted out of sync with the source of truth, with no atomicity to catch it. The workaround at the time was occasional full reindexes to patch the drift back into alignment, which is a symptom fix, not a structural one.</p>
+
+      <h2 id="options">Options considered</h2>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Dual writes from application code (status quo)</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Write to the database and to Elasticsearch in the same application code path. There's no atomicity between the two writes, so a partial failure leaves the index silently stale with nothing to signal it. It also couples indexing load directly to the request path, which is what caused the load spikes.</p>
+      </div>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Periodic full reindex as the primary mechanism</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Rebuild the Elasticsearch indexes from the source databases on a schedule. This is heavy and slow to run, and search is stale for the entire gap between runs. It's useful as an occasional repair tool, but it can't be the primary way indexes stay in sync.</p>
+      </div>
+      <div class="cs-option chosen">
+        <p class="cs-option-name">Change data capture with Debezium and Kafka Connect</p>
+        <p class="cs-option-verdict">Chosen</p>
+        <p>Stream committed changes out of the databases through Debezium and Kafka Connect into Kafka, and let consumers apply those changes to Elasticsearch. Indexing is decoupled from the application write path entirely — the index follows what was actually committed to the database, not what application code hoped it wrote twice.</p>
+      </div>
+
+      <h2 id="decision">Decision &amp; architecture</h2>
+      <p>The core of the architecture is Debezium running on Kafka Connect, capturing changes from both PostgreSQL and MongoDB — the archive's two source databases. Rather than one big undifferentiated pipeline, the topology is organized per module and per table: connectors are set up per source database, topics are organized per table and per module, and consumers are scoped per module, each writing to its own Elasticsearch index. That topology mirrors the archive's own module and table boundaries. Search is not the only consumer, either: modules also consume the change streams to keep cross-module shared data up to date, so data owned by one module stays current wherever other modules depend on it.</p>
+      <p>Backfilling or rebuilding an index — for example after a mapping change, or to repair an index — is handled by a separate batch job that runs independently of the streaming path. It's a deliberate, on-demand tool now, not the thing keeping the index in sync day to day.</p>
+      <p>Failure recovery relies on Kafka's own consumer offset model: if a consumer crashes, it resumes from its last committed offset, and transient failures writing to Elasticsearch are retried rather than treated as terminal.</p>
+      <figure class="cs-diagram">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Diagram: PostgreSQL and MongoDB source databases are captured by Debezium and Kafka Connect. Captured changes flow into Kafka topics organized per module and table, which are read by per-module consumers that each write to their own Elasticsearch index. A separate batch backfill job writes to Elasticsearch directly, independent of the streaming path, and is used for repairs and mapping changes.">
+          <rect class="diagram-box" x="20" y="20" width="128" height="56"/>
+          <text class="diagram-label" x="84" y="44" text-anchor="middle">PostgreSQL</text>
+          <text class="diagram-sub" x="84" y="62" text-anchor="middle">source database</text>
+
+          <rect class="diagram-box" x="20" y="94" width="128" height="56"/>
+          <text class="diagram-label" x="84" y="118" text-anchor="middle">MongoDB</text>
+          <text class="diagram-sub" x="84" y="136" text-anchor="middle">source database</text>
+
+          <path class="diagram-arrow" d="M148 48 L163 138"/>
+          <path class="diagram-arrow" d="M148 122 L163 152"/>
+
+          <rect class="diagram-box-accent" x="163" y="110" width="128" height="70"/>
+          <text class="diagram-label" x="227" y="136" text-anchor="middle">Debezium +</text>
+          <text class="diagram-label" x="227" y="154" text-anchor="middle">Kafka Connect</text>
+          <text class="diagram-sub" x="227" y="171" text-anchor="middle">captures committed changes</text>
+
+          <path class="diagram-arrow" d="M291 145 L306 145"/>
+
+          <rect class="diagram-box" x="306" y="110" width="128" height="70"/>
+          <text class="diagram-label" x="370" y="140" text-anchor="middle">Kafka topics</text>
+          <text class="diagram-sub" x="370" y="158" text-anchor="middle">per module / table</text>
+
+          <path class="diagram-arrow" d="M434 145 L449 145"/>
+
+          <rect class="diagram-box" x="449" y="110" width="128" height="70"/>
+          <text class="diagram-label" x="513" y="140" text-anchor="middle">Module consumers</text>
+          <text class="diagram-sub" x="513" y="158" text-anchor="middle">one per module</text>
+
+          <path class="diagram-arrow" d="M577 145 L592 145"/>
+
+          <rect class="diagram-box-accent" x="592" y="110" width="128" height="70"/>
+          <text class="diagram-label" x="656" y="140" text-anchor="middle">Elasticsearch</text>
+          <text class="diagram-sub" x="656" y="158" text-anchor="middle">per-module indexes</text>
+
+          <rect class="diagram-box" x="320" y="230" width="250" height="56"/>
+          <text class="diagram-label" x="445" y="253" text-anchor="middle">Batch backfill job</text>
+          <text class="diagram-sub" x="445" y="271" text-anchor="middle">repair / mapping changes — independent of streaming path</text>
+
+          <path class="diagram-arrow" d="M572 232 L648 180"/>
+        </svg>
+        <figcaption>PostgreSQL and MongoDB changes flow through Debezium and Kafka Connect into per-module/table Kafka topics, consumed by per-module consumers that write to their own Elasticsearch indexes. A separate batch backfill job writes to Elasticsearch directly, independent of the streaming path.</figcaption>
+      </figure>
+
+      <h2 id="outcome">Outcome</h2>
+      <p>Missed updates are eliminated as a class of problem: the index follows committed database changes instead of depending on application code successfully writing to two places at once. Indexing load is decoupled from the request path, so there are no more search-driven load spikes triggered by application writes.</p>
+      <p>Full reindexing changed role entirely — from a routine bandage patching over drift, to a deliberate, separately-run repair tool used for mapping changes or index repair, independent of the day-to-day streaming path. And because the change streams carry committed changes rather than search documents, the same pipeline keeps cross-module shared data in sync — one mechanism serving both search freshness and inter-module consistency.</p>
+    </article>
+
+    <nav class="cs-next" aria-label="More case studies">
+      <a href="../index.html#projects" class="btn btn-outline">All case studies</a>
+      <a href="swiss-life-platform.html" class="btn btn-outline">Next: Multi-tenant fintech platform <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </nav>
+
+  </main>
+
+  <footer>
+    <p>
+      Designed &amp; built by <strong>Abul Hasan</strong> ·
+      <a href="https://github.com/ahasan09/ahasan09.github.io" target="_blank" rel="noopener">View source</a> ·
+      <span id="footer-year"></span>
+    </p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

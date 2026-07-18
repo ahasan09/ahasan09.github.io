@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with custom skills encoding team conventions." />
+  <meta name="author" content="Abul Hasan" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="color-scheme" content="dark" />
+
+  <meta property="og:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
+  <meta property="og:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with custom skills encoding team conventions." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
+  <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
+  <meta name="twitter:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with custom skills encoding team conventions." />
+  <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <link rel="canonical" href="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
+  <link rel="icon" type="image/png" href="../avatar.png" />
+
+  <title>An Agentic Development Workflow: From Jira Ticket to Reviewed PR | Abul Hasan</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "An Agentic Development Workflow: From Jira Ticket to Reviewed PR",
+    "description": "The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with custom skills encoding team conventions.",
+    "url": "https://ahasan09.github.io/case-studies/agentic-workflow.html",
+    "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
+    "datePublished": "2026-07-18"
+  }
+  </script>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ba6b3"/></marker>
+  </svg>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AH<span class="dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#impact">Impact</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Stack</a></li>
+        <li><a href="../index.html#projects">Case Studies</a></li>
+        <li><a href="../index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="cs-hero">
+      <p class="cs-kicker">Case study · Engineering process · AI</p>
+      <h1 class="cs-title">An Agentic Development Workflow: From Jira Ticket to Reviewed PR</h1>
+      <p class="cs-summary">I develop with an agent pipeline that carries a Jira ticket through analysis, design spec, planning, implementation, code review, and security review — while I direct the architecture and own every merge.</p>
+      <div class="cs-meta">
+        <span><strong>Role:</strong> Senior Staff Software Engineer</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Stack:</strong> Claude Code · custom skills · Jira</span>
+      </div>
+    </header>
+
+    <article class="cs-article">
+      <h2 id="context">Context</h2>
+      <p>This is the day-to-day development process I run at Cefalo on the Norwegian National Archive (Asta) work — a process I built and drive myself. It's built on Claude Code with a Jira MCP integration, and every stage of the pipeline is a separate custom skill that I built rather than a single monolithic prompt.</p>
+      <p>What started as my own personal workflow has since become the team's: the rest of the team is adopting the same pipeline for their own ticket work.</p>
+
+      <h2 id="problem">Problem &amp; constraints</h2>
+      <p>The goal was to raise delivery velocity without lowering the quality bar — this is a production government system, and speed can't come at the cost of correctness or safety.</p>
+      <p>That put hard constraints on how much autonomy the agent could be given. It must never operate outside a set of guardrails: no access to secrets, no pushes to <code>develop</code>, <code>release</code>, or <code>master</code> — those are blocked outright — and the agent is only ever allowed to work on feature branches. On top of that, I review every single change the AI makes before anything merges. Nothing lands without a human in the loop.</p>
+
+      <h2 id="options">Options considered</h2>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Chat/autocomplete-style AI assist</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Using AI the way most people start out — as a chat assistant or inline autocomplete — speeds up typing, but leaves the analysis, design spec, planning, and review stages entirely manual. It underuses what the tooling can actually do end to end.</p>
+      </div>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">Full autonomy, no human gate</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Letting the agent run the whole pipeline and merge on its own would maximize speed, but edge cases get missed. A production government system can't absorb that risk, so removing the human checkpoint was never on the table.</p>
+      </div>
+      <div class="cs-option chosen">
+        <p class="cs-option-name">Almost-autonomous pipeline with a human in the loop</p>
+        <p class="cs-option-verdict">Chosen</p>
+        <p>The agent runs the full pipeline — analysis through implementation and review — but I no longer write code by hand. I direct the architecture and review every change instead of typing it, with a human gate before anything merges.</p>
+      </div>
+
+      <h2 id="decision">Decision &amp; architecture</h2>
+      <p>The pipeline has seven stages, each implemented as its own custom skill run through Claude Code:</p>
+      <ol>
+        <li><strong>Fetch the Jira ticket</strong> — via the Jira MCP integration.</li>
+        <li><strong>Analyze the requirement</strong> — turn the ticket into a concrete understanding of what's being asked.</li>
+        <li><strong>Generate a design spec</strong> — published to Confluence automatically, one page per ticket per sprint.</li>
+        <li><strong>Create an implementation plan</strong> — also published to Confluence, with progress commented back onto the Jira ticket via a dedicated skill.</li>
+        <li><strong>Implement</strong> — all work happens on a feature branch; the agent cannot push to <code>develop</code>, <code>release</code>, or <code>master</code>. For UI work, designs come into the pipeline through the Figma MCP, so what ships matches the Figma design precisely.</li>
+        <li><strong>Code review</strong> — run as a skill before anything is presented for merge.</li>
+        <li><strong>Security review</strong> — a second, separate review pass focused on security.</li>
+      </ol>
+      <p>The human gate sits on top of all of it: I go through every change the AI makes, and nothing merges without that review. The documentation loop is automatic rather than a manual chore — design and plan documents land in Confluence and status updates land as Jira comments, per ticket, per sprint, without me writing them by hand.</p>
+      <figure class="cs-diagram">
+        <svg viewBox="0 0 720 260" role="img" aria-label="Diagram: a seven-stage pipeline, each stage run as its own skill. Fetch Jira ticket, analyze requirement, generate design spec, and create implementation plan run left to right in the top row, with the design spec and implementation plan stages publishing documents to Confluence and progress comments back to Jira. The chain continues down and right to left through implement on a feature branch, then code review and security review, ending at My review — the author's review of every change the AI makes, the gate that applies across all seven stages before anything merges.">
+          <rect class="diagram-box" x="20" y="20" width="150" height="60"/>
+          <text class="diagram-label" x="95" y="46" text-anchor="middle">Fetch Jira ticket</text>
+          <text class="diagram-sub" x="95" y="64" text-anchor="middle">Jira MCP</text>
+
+          <path class="diagram-arrow" d="M170 50 L190 50"/>
+
+          <rect class="diagram-box" x="190" y="20" width="150" height="60"/>
+          <text class="diagram-label" x="265" y="46" text-anchor="middle">Analyze</text>
+          <text class="diagram-sub" x="265" y="64" text-anchor="middle">requirement</text>
+
+          <path class="diagram-arrow" d="M340 50 L360 50"/>
+
+          <rect class="diagram-box" x="360" y="20" width="150" height="60"/>
+          <text class="diagram-label" x="435" y="46" text-anchor="middle">Design spec</text>
+          <text class="diagram-sub" x="435" y="64" text-anchor="middle">→ Confluence</text>
+
+          <path class="diagram-arrow" d="M510 50 L530 50"/>
+
+          <rect class="diagram-box" x="530" y="20" width="150" height="60"/>
+          <text class="diagram-label" x="605" y="46" text-anchor="middle">Implementation plan</text>
+          <text class="diagram-sub" x="605" y="64" text-anchor="middle">→ Confluence + Jira comment</text>
+
+          <path class="diagram-arrow" d="M605 80 L605 170"/>
+
+          <rect class="diagram-box" x="530" y="170" width="150" height="60"/>
+          <text class="diagram-label" x="605" y="196" text-anchor="middle">Implement</text>
+          <text class="diagram-sub" x="605" y="214" text-anchor="middle">feature branch only</text>
+
+          <path class="diagram-arrow" d="M530 200 L510 200"/>
+
+          <rect class="diagram-box" x="360" y="170" width="150" height="60"/>
+          <text class="diagram-label" x="435" y="196" text-anchor="middle">Code review</text>
+          <text class="diagram-sub" x="435" y="214" text-anchor="middle">skill</text>
+
+          <path class="diagram-arrow" d="M360 200 L340 200"/>
+
+          <rect class="diagram-box" x="190" y="170" width="150" height="60"/>
+          <text class="diagram-label" x="265" y="196" text-anchor="middle">Security review</text>
+          <text class="diagram-sub" x="265" y="214" text-anchor="middle">skill</text>
+
+          <path class="diagram-arrow" d="M190 200 L170 200"/>
+
+          <rect class="diagram-box-accent" x="20" y="170" width="150" height="60"/>
+          <text class="diagram-label" x="95" y="196" text-anchor="middle">My review</text>
+          <text class="diagram-sub" x="95" y="214" text-anchor="middle">every change · gate to merge</text>
+        </svg>
+        <figcaption>All seven stages run as skills — I review every change the AI makes before anything merges, a gate that applies across the whole pipeline, not just one stage.</figcaption>
+      </figure>
+
+      <h2 id="outcome">Outcome</h2>
+      <p>Development time has come down, and the pipeline finds more complex bugs than the previous manual process did — it resolves more cases than before.</p>
+      <p>The honest trade-off is that the bottleneck moved rather than disappeared: review now takes up more of my time than writing code used to. The pipeline also isn't perfect — it sometimes misses edge cases, and those get caught in my review rather than before it. The mitigation that's worked is investing more in the plan stage: a more thorough, "perfect" plan measurably reduces how often edge cases get missed later on. The rest of the team is converging on this same process as a result.</p>
+    </article>
+
+    <nav class="cs-next" aria-label="More case studies">
+      <a href="../index.html#projects" class="btn btn-outline">All case studies</a>
+      <a href="kafka-cdc-search.html" class="btn btn-outline">Next: CDC with Kafka <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </nav>
+
+  </main>
+
+  <footer>
+    <p>
+      Designed &amp; built by <strong>Abul Hasan</strong> ·
+      <a href="https://github.com/ahasan09/ahasan09.github.io" target="_blank" rel="noopener">View source</a> ·
+      <span id="footer-year"></span>
+    </p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

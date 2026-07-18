@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Abul Hasan — Senior Staff Software Engineer with 13+ years building nation-scale frontends. Currently leading Angular architecture at Cefalo for the Norwegian National Archive (10K+ users). Previously owned the FE platform behind Swiss Life Select fintech (100K+ EU users)." />
+  <meta name="description" content="Abul Hasan — Senior Staff Software Engineer with 13+ years building nation-scale frontends. Currently leading Angular architecture at Cefalo for the Norwegian National Archive (public portal serving 1M+ users). Previously owned the FE platform behind Swiss Life Select fintech (100K+ EU users)." />
   <meta name="keywords" content="Abul Hasan, Senior Staff Software Engineer, Frontend Architect, Angular, React, NestJS, Kotlin, Spring Boot, .NET Core, Microservices, Cefalo, Norwegian National Archive, Swiss Life Select" />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
@@ -88,7 +88,7 @@
         <li><a href="#impact">Impact</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#skills">Stack</a></li>
-        <li><a href="#projects">Work</a></li>
+        <li><a href="#projects">Case Studies</a></li>
         <li><a href="#contact" class="btn-nav">Contact</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
@@ -124,7 +124,7 @@
           Download Resume
         </a>
         <a href="#projects" class="btn btn-outline">
-          View Selected Work
+          View Case Studies
           <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg>
         </a>
       </div>
@@ -158,15 +158,20 @@
           <div class="t-cmd"><span class="t-prompt">$</span> cat current.md</div>
           <div class="t-out">
             <strong>Norwegian National Archive (Asta)</strong><br/>
-            10,000+ users · Angular migration across 5 repos<br/>
-            Team scaled 10 → 5 · delivered with leaner crew
+            1M+ portal users · Angular 21 &amp; React migrations across 5 repos<br/>
+            FE owner of all 5 modules · portal &amp; requisition BE
+          </div>
+
+          <div class="t-cmd"><span class="t-prompt">$</span> cat focus.md</div>
+          <div class="t-out">
+            Agentic dev workflows · Kafka CDC · Elasticsearch
           </div>
 
           <div class="t-cmd"><span class="t-prompt">$</span> cat previous.md</div>
           <div class="t-out">
             <strong>Swiss Life Select · EU fintech</strong><br/>
             100,000+ users · 4 yrs owning FE architecture<br/>
-            SSO · multi-tenancy · PWA · SSR · realtime
+            SSO · multi-tenancy · PWA · realtime
           </div>
 
           <div class="t-cmd"><span class="t-prompt">$</span> <span class="t-cursor"></span></div>
@@ -190,8 +195,8 @@
           <span class="stat-label">Years shipping production software</span>
         </div>
         <div class="stat">
-          <span class="stat-num">10K<span class="stat-plus">+</span></span>
-          <span class="stat-label">Users on the Norwegian Archive system I architect at Cefalo</span>
+          <span class="stat-num">1M<span class="stat-plus">+</span></span>
+          <span class="stat-label">Users on the public Arkivportalen portal I own at Cefalo</span>
         </div>
         <div class="stat">
           <span class="stat-num">100K<span class="stat-plus">+</span></span>
@@ -199,7 +204,7 @@
         </div>
         <div class="stat">
           <span class="stat-num">5</span>
-          <span class="stat-label">Codebases migrated to modern Angular in parallel</span>
+          <span class="stat-label">Codebases modernized — four to Angular 21, one to latest React</span>
         </div>
       </div>
 
@@ -215,9 +220,9 @@
             Owning the full frontend platform on long-running enterprise products: framework migrations, multi-tenancy, real-time systems, and architecture that survives team turnover. Equally comfortable in the backend stack — NestJS, Kotlin/Spring Boot, .NET Core — when delivery requires it.
           </p>
 
-          <h3 class="kicker">What I'm exploring</h3>
+          <h3 class="kicker">How I build now</h3>
           <p>
-            AI-assisted development workflows, edge runtimes, and applying TDD more rigorously to frontend codebases.
+            I run an agentic development workflow end-to-end: an agent pipeline picks up a Jira ticket, analyzes the requirement, generates a design spec and an implementation plan, implements it, then runs code review and security review — while I direct the architecture and own every merge. I've built custom skills that encode our team's conventions into that pipeline. <a href="case-studies/agentic-workflow.html">Read the case study</a>.
           </p>
         </div>
 
@@ -265,27 +270,31 @@
             <p class="timeline-client">Client: <em>Norwegian National Archive (Asta)</em>, Norway</p>
 
             <p class="timeline-desc">
-              Norway's national-scale archive system: hierarchical paper records, digital SIARD imports, QR-driven digitisation workflows, and dynamic role-based access for government archivists and the public.
+              Norway's national-scale archive system: hierarchical paper records, QR-driven digitisation workflows, and dynamic role-based access for government archivists and the public.
             </p>
 
             <div class="case-row">
               <div class="case-block">
                 <h4 class="case-label">Problem</h4>
-                <p>A frontend stack split across 5 repositories with evolving feature demand and a team rebalanced from <strong>10 down to 5</strong> engineers — without slowing the migration roadmap.</p>
+                <p>A frontend stack split across 5 repositories, a team rebalanced from <strong>10 down to 5</strong> engineers before the migration began — and feature demand that didn't stop.</p>
               </div>
               <div class="case-block">
                 <h4 class="case-label">Approach</h4>
                 <ul>
-                  <li>Drove <strong>Angular migration across all 5 repositories</strong> in parallel</li>
-                  <li>Designed the SIARD import pipeline for legacy archive ingest</li>
+                  <li>Drove <strong>Angular 14→21 and React migrations across all 5 repositories</strong> — pilot repo first, then the rest in overlap</li>
                   <li>Built the dynamic permission engine and Elasticsearch search layer</li>
+                  <li>Own the <strong>frontend of all 5 modules</strong>, plus the Arkivportalen portal and requisition backends — leading the team day-to-day</li>
+                  <li>Built a Kafka CDC pipeline keeping Elasticsearch and cross-module shared data in sync with PostgreSQL/MongoDB</li>
+                  <li>Built a Python digital-archive middleware — gradually pulls portal data and reconciles it against an external digital-media system to track what's published there; a portal-side scheduler pulls that status into Elasticsearch, so the portal never calls the media system directly</li>
+                  <li>Implemented WebSocket live notifications; drove UI improvements and Google Analytics integration on the portal</li>
+                  <li>Set up self-hosted Bitbucket Pipelines runners on Azure VMs for CI</li>
                   <li>Standardized testing &amp; CI patterns across the FE codebases</li>
                 </ul>
               </div>
               <div class="case-block">
                 <h4 class="case-label">Outcome</h4>
                 <ul>
-                  <li>Production system serving <strong>10,000+ archivists &amp; public users</strong></li>
+                  <li>Serving <strong>10,000+ archivists</strong> and a public portal with <strong>1M+ users</strong></li>
                   <li>Shipped migration roadmap with a <strong>50% leaner team</strong></li>
                   <li>Cross-repo consistency in tests, CI, and FE conventions</li>
                 </ul>
@@ -296,7 +305,7 @@
               <span class="chip chip-strong">Angular</span>
               <span class="chip chip-strong">React</span>
               <span class="chip chip-strong">Kotlin</span>
-              <span class="chip">Java 17</span>
+              <span class="chip">Java 26</span>
               <span class="chip">Spring Boot</span>
               <span class="chip">PostgreSQL</span>
               <span class="chip">MongoDB</span>
@@ -331,7 +340,7 @@
                 <h4 class="case-label">Ownership</h4>
                 <ul>
                   <li>Owned <strong>complex architectural decisions</strong> for the FE platform</li>
-                  <li>Implemented SSO, multi-tenancy, PWA, SSR, push notifications</li>
+                  <li>Implemented SSO, multi-tenancy, PWA, push notifications</li>
                   <li>Real-time integrations via Microsoft SignalR + RabbitMQ</li>
                   <li>Built complex data dashboards (ChartJS, AG Grid)</li>
                   <li>Led a team of frontend engineers</li>
@@ -419,7 +428,6 @@
             <span class="chip">Chakra UI</span>
             <span class="chip">Bootstrap</span>
             <span class="chip">PWA</span>
-            <span class="chip">SSR</span>
           </div>
         </div>
 
@@ -430,7 +438,7 @@
             <span class="chip chip-strong">Kotlin</span>
             <span class="chip chip-strong">.NET Core</span>
             <span class="chip">Node.js</span>
-            <span class="chip">Java 17</span>
+            <span class="chip">Java 26</span>
             <span class="chip">Spring Boot</span>
             <span class="chip">C#</span>
             <span class="chip">ASP.NET MVC</span>
@@ -448,7 +456,7 @@
           <div class="chips">
             <span class="chip chip-strong">PostgreSQL</span>
             <span class="chip chip-strong">MongoDB</span>
-            <span class="chip">MSSQL</span>
+            <span class="chip chip-strong">MSSQL</span>
             <span class="chip">Redis</span>
             <span class="chip">Elasticsearch</span>
             <span class="chip">RabbitMQ</span>
@@ -464,11 +472,11 @@
           <div class="chips">
             <span class="chip chip-strong">Microsoft Azure</span>
             <span class="chip">AWS</span>
-            <span class="chip">Docker</span>
+            <span class="chip chip-strong">Docker</span>
             <span class="chip">Azure DevOps</span>
             <span class="chip">Jenkins</span>
             <span class="chip">GitHub Actions</span>
-            <span class="chip">Bitbucket Pipelines</span>
+            <span class="chip chip-strong">Bitbucket Pipelines</span>
             <span class="chip">Application Insights</span>
             <span class="chip">Azure Blob Storage</span>
           </div>
@@ -478,6 +486,7 @@
           <h3 class="skill-group-title">Quality &amp; practice</h3>
           <div class="chips">
             <span class="chip chip-strong">Playwright</span>
+            <span class="chip chip-strong">Agentic development</span>
             <span class="chip chip-strong">TDD</span>
             <span class="chip chip-strong">SOLID</span>
             <span class="chip">Jest</span>
@@ -487,6 +496,7 @@
             <span class="chip">Design Patterns</span>
             <span class="chip">Clean Architecture</span>
             <span class="chip">Agile / Scrum</span>
+            <span class="chip">Claude Code</span>
           </div>
         </div>
 
@@ -494,87 +504,62 @@
     </div>
   </section>
 
-  <!-- SELECTED WORK -->
+  <!-- CASE STUDIES -->
   <section id="projects">
     <div class="container">
-      <h2 class="section-title">Selected Work</h2>
-      <p class="section-lede">A small, opinionated set. Larger production systems for clients are described under <a href="#experience">Experience</a>.</p>
+      <h2 class="section-title">Case Studies</h2>
+      <p class="section-lede">Deep dives into architecture decisions from production work — the problem, the options I weighed, and what happened. Client systems are described at architecture level only.</p>
 
       <div class="projects-grid">
 
         <article class="project-card">
           <header class="project-header">
-            <span class="project-tag">Frontend · API</span>
-            <a href="https://github.com/ahasan09/game-hub" target="_blank" rel="noopener" class="icon-link" aria-label="Game Hub on GitHub">
-              <svg aria-hidden="true" focusable="false"><use href="#i-github"/></svg>
-            </a>
+            <span class="project-tag">Migration · Frontend platform</span>
           </header>
-          <h3 class="project-name">Game Hub</h3>
-          <p class="project-desc">Video-game discovery browser with infinite scroll, genre &amp; platform filters, dark / light mode, and real-time search backed by the RAWG API.</p>
+          <h3 class="project-name"><a href="case-studies/angular-migration.html">Migrating 5 codebases to Angular 21 with half the team</a></h3>
+          <p class="project-desc">The team was cut from 10 engineers to 5 before the migration began. How sequencing, risk management, and CI standardization shipped it anyway.</p>
           <div class="chips chips-tight">
-            <span class="chip">React 18</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">Vite</span>
-            <span class="chip">Chakra UI</span>
-            <span class="chip">React Query</span>
+            <span class="chip">Angular 21</span><span class="chip">TypeScript</span><span class="chip">CI/CD</span>
           </div>
         </article>
 
         <article class="project-card">
           <header class="project-header">
-            <span class="project-tag">Backend · API</span>
-            <a href="https://github.com/ahasan09/nestjs-task-management" target="_blank" rel="noopener" class="icon-link" aria-label="NestJS Task Management on GitHub">
-              <svg aria-hidden="true" focusable="false"><use href="#i-github"/></svg>
-            </a>
+            <span class="project-tag">Process · AI</span>
           </header>
-          <h3 class="project-name">NestJS Task Management API</h3>
-          <p class="project-desc">Production-grade task-management REST API: JWT auth, user-scoped resources, status filtering, and full unit + e2e coverage.</p>
+          <h3 class="project-name"><a href="case-studies/agentic-workflow.html">An agentic workflow: from Jira ticket to reviewed PR</a></h3>
+          <p class="project-desc">An agent pipeline that analyzes the ticket, writes the spec and plan, implements, and runs code + security review — with me owning every merge.</p>
           <div class="chips chips-tight">
-            <span class="chip">NestJS</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">TypeORM</span>
-            <span class="chip">JWT</span>
+            <span class="chip">Claude Code</span><span class="chip">Custom skills</span><span class="chip">Jira</span>
           </div>
         </article>
 
         <article class="project-card">
           <header class="project-header">
-            <span class="project-tag">Quality · E2E</span>
-            <a href="https://github.com/ahasan09/playwright-practice-app" target="_blank" rel="noopener" class="icon-link" aria-label="Playwright suite on GitHub">
-              <svg aria-hidden="true" focusable="false"><use href="#i-github"/></svg>
-            </a>
+            <span class="project-tag">Backend · Data</span>
           </header>
-          <h3 class="project-name">Playwright E2E Suite</h3>
-          <p class="project-desc">Angular app with a complete E2E suite built on the Page Object Model — covers forms, auth flows, dynamic content, and API mocking patterns I use in production.</p>
+          <h3 class="project-name"><a href="case-studies/kafka-cdc-search.html">CDC with Kafka: keeping Elasticsearch in sync</a></h3>
+          <p class="project-desc">Why change data capture beat dual writes and batch reindexing for search freshness against PostgreSQL and MongoDB.</p>
           <div class="chips chips-tight">
-            <span class="chip">Angular 14</span>
-            <span class="chip">Playwright</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">Page Object Model</span>
+            <span class="chip">Kafka</span><span class="chip">Elasticsearch</span><span class="chip">Java/Kotlin</span>
           </div>
         </article>
 
         <article class="project-card">
           <header class="project-header">
-            <span class="project-tag">Backend · GraphQL</span>
-            <a href="https://github.com/ahasan09/student-management-graphql-mongodb" target="_blank" rel="noopener" class="icon-link" aria-label="Student Management GraphQL API on GitHub">
-              <svg aria-hidden="true" focusable="false"><use href="#i-github"/></svg>
-            </a>
+            <span class="project-tag">Platform · Fintech</span>
           </header>
-          <h3 class="project-name">Student Management — GraphQL API</h3>
-          <p class="project-desc">NestJS GraphQL service for managing students and lessons against MongoDB; full CRUD via Apollo, schema-first, ready to plug into a frontend.</p>
+          <h3 class="project-name"><a href="case-studies/swiss-life-platform.html">A multi-tenant fintech platform for 100K EU users</a></h3>
+          <p class="project-desc">Four years owning frontend architecture: SSO, tenancy isolation, PWA, and real-time delivery at Swiss Life Select.</p>
           <div class="chips chips-tight">
-            <span class="chip">NestJS</span>
-            <span class="chip">GraphQL</span>
-            <span class="chip">Apollo</span>
-            <span class="chip">MongoDB</span>
+            <span class="chip">Angular</span><span class="chip">.NET Core</span><span class="chip">SignalR</span>
           </div>
         </article>
 
       </div>
 
       <div class="projects-footer">
+        <p class="section-lede projects-note">My GitHub also holds smaller exercises and experiments.</p>
         <a href="https://github.com/ahasan09?tab=repositories" target="_blank" rel="noopener" class="btn btn-outline">
           View all repositories
           <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow-out"/></svg>

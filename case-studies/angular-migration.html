@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta name="author" content="Abul Hasan" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="color-scheme" content="dark" />
+
+  <meta property="og:title" content="Migrating 5 Frontend Codebases to Angular 21 with Half the Team — Abul Hasan" />
+  <meta property="og:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://ahasan09.github.io/case-studies/angular-migration.html" />
+  <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Migrating 5 Frontend Codebases to Angular 21 with Half the Team — Abul Hasan" />
+  <meta name="twitter:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
+
+  <link rel="canonical" href="https://ahasan09.github.io/case-studies/angular-migration.html" />
+  <link rel="icon" type="image/png" href="../avatar.png" />
+
+  <title>Migrating 5 Frontend Codebases to Angular 21 with Half the Team | Abul Hasan</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="case-study.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Migrating 5 Frontend Codebases to Angular 21 with Half the Team",
+    "description": "How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive.",
+    "url": "https://ahasan09.github.io/case-studies/angular-migration.html",
+    "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
+    "datePublished": "2026-07-18"
+  }
+  </script>
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9ba6b3"/></marker>
+  </svg>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">AH<span class="dot">.</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#impact">Impact</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#skills">Stack</a></li>
+        <li><a href="../index.html#projects">Case Studies</a></li>
+        <li><a href="../index.html#contact" class="btn-nav">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="cs-hero">
+      <p class="cs-kicker">Case study · Frontend platform · Migration</p>
+      <h1 class="cs-title">Migrating 5 Frontend Codebases to Angular 21 with Half the Team</h1>
+      <p class="cs-summary">The Norwegian National Archive's frontend platform spanned five repositories, and the team had just been rebalanced from 10 engineers to 5. This is how the migration shipped anyway — a pilot repo first, then the rest in overlap.</p>
+      <div class="cs-meta">
+        <span><strong>Role:</strong> Senior Staff Software Engineer — migration lead</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Stack:</strong> Angular 21 · TypeScript · CI/CD</span>
+      </div>
+    </header>
+
+    <article class="cs-article">
+      <h2 id="context">Context</h2>
+      <p>I led the frontend platform for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, with migration-lead responsibility across five production frontend repositories: the archive management system, the admin app, the archive storage system, the public search app, and the requisition app. Four of these were Angular applications; the requisition app was built in React and was brought up to the latest React release as part of the same modernization effort.</p>
+      <p>The platform serves a production system used by more than 10,000 archivists and members of the public, so the migration had to happen without disrupting a system that was actively in use.</p>
+
+      <h2 id="problem">Problem &amp; constraints</h2>
+      <p>Two pressures made the migration necessary. Staying on an unsupported Angular version meant losing security patches, and the older version was increasingly blocking library upgrades and slowing down feature delivery.</p>
+      <p>The complicating factor was timing: the team had already been rebalanced from 10 engineers to 5 before the migration started. I had to plan and execute the migration with the leaner team from the outset, not adjust for it partway through. Feature demand from the business didn't pause for the migration either — the five repositories kept shipping new work while the upgrade was underway.</p>
+
+      <h2 id="options">Options considered</h2>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">One repo at a time, strictly sequential</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Fully migrate and regression-test one repository before starting the next. This was the safest option in isolation, but with five repositories, a five-person team, and feature demand that didn't stop, doing them one after another end-to-end would have made the total timeline too slow.</p>
+      </div>
+      <div class="cs-option rejected">
+        <p class="cs-option-name">All five repositories fully in parallel</p>
+        <p class="cs-option-verdict">Rejected</p>
+        <p>Migrating all five at once would have minimized calendar time, but it concentrated too much simultaneous risk on a five-person team that also had to keep delivering features. There was no precedent yet for how the upgrade path would behave across the codebases, so running all five blind at the same time was too risky.</p>
+      </div>
+      <div class="cs-option chosen">
+        <p class="cs-option-name">Pilot on the smallest repo, then overlap the rest</p>
+        <p class="cs-option-verdict">Chosen</p>
+        <p>Migrate the admin app — the smallest of the five — first, sequentially version by version with full regression, to prove the migration pattern. Once proven, apply that pattern to the remaining four repositories with overlapping timelines. This resolved the riskiest unknowns on the smallest, lowest-stakes codebase before applying them everywhere else.</p>
+      </div>
+
+      <h2 id="decision">Decision &amp; architecture</h2>
+      <p>The admin app went first as the pilot. I upgraded it version by version — v14 through v21, not a single jump — with full regression testing at the end. Doing this on the smallest repo first meant I could work through every breaking change on a codebase small enough to fully regress before touching anything else.</p>
+      <p>The single biggest technical hurdle was the Angular Material upgrade: the breaking changes introduced after v14, from the shift to MDC-based components, cost significantly more engineering time than the rest of the framework upgrade combined. Once that was resolved on the pilot, the remaining four repositories were migrated with overlapping timelines rather than sequentially, since the pattern was already de-risked.</p>
+      <p>Alongside the version upgrade, I standardized the engineering setup across all five repositories: the same lint and test configuration, per-repo CI pipelines, Playwright end-to-end suites, PR checks, SonarQube checks, and SBOM checks in CI.</p>
+      <figure class="cs-diagram">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Diagram: the admin app is upgraded first as a pilot, sequentially from Angular 14 to Angular 21, proving the migration pattern. The same pattern is then applied to the archive management, archive storage, public search, and requisition repositories. All five repositories share one CI standardization layer covering lint and test, Playwright end-to-end tests, SonarQube, and SBOM checks.">
+          <rect class="diagram-box-accent" x="280" y="20" width="160" height="64"/>
+          <text class="diagram-label" x="360" y="46" text-anchor="middle">Admin app — pilot</text>
+          <text class="diagram-sub" x="360" y="64" text-anchor="middle">v14 → v21, sequential</text>
+
+          <path class="diagram-arrow" d="M320 84 L105 140"/>
+          <path class="diagram-arrow" d="M340 84 L275 140"/>
+          <path class="diagram-arrow" d="M380 84 L445 140"/>
+          <path class="diagram-arrow" d="M400 84 L615 140"/>
+          <text class="diagram-sub" x="360" y="112" text-anchor="middle">pattern proven → applied to remaining repos</text>
+
+          <rect class="diagram-box" x="30" y="140" width="150" height="60"/>
+          <text class="diagram-label" x="105" y="166" text-anchor="middle">Archive Mgmt</text>
+          <text class="diagram-sub" x="105" y="184" text-anchor="middle">Angular</text>
+
+          <rect class="diagram-box" x="200" y="140" width="150" height="60"/>
+          <text class="diagram-label" x="275" y="166" text-anchor="middle">Archive Storage</text>
+          <text class="diagram-sub" x="275" y="184" text-anchor="middle">Angular</text>
+
+          <rect class="diagram-box" x="370" y="140" width="150" height="60"/>
+          <text class="diagram-label" x="445" y="166" text-anchor="middle">Public Search</text>
+          <text class="diagram-sub" x="445" y="184" text-anchor="middle">Angular</text>
+
+          <rect class="diagram-box" x="540" y="140" width="150" height="60"/>
+          <text class="diagram-label" x="615" y="166" text-anchor="middle">Requisition</text>
+          <text class="diagram-sub" x="615" y="184" text-anchor="middle">React</text>
+
+          <path class="diagram-arrow" d="M105 200 L105 230"/>
+          <path class="diagram-arrow" d="M275 200 L275 230"/>
+          <path class="diagram-arrow" d="M445 200 L445 230"/>
+          <path class="diagram-arrow" d="M615 200 L615 230"/>
+
+          <rect class="diagram-box" x="30" y="230" width="660" height="50"/>
+          <text class="diagram-label" x="360" y="250" text-anchor="middle">CI standardization layer</text>
+          <text class="diagram-sub" x="360" y="266" text-anchor="middle">Lint &amp; test · Playwright E2E · SonarQube · SBOM</text>
+        </svg>
+        <figcaption>Pilot-then-parallel migration sequence with a shared CI standardization layer underneath all five repositories.</figcaption>
+      </figure>
+
+      <h2 id="outcome">Outcome</h2>
+      <div class="cs-outcome-stats">
+        <div class="stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Frontend repositories migrated</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">10→5</span>
+          <span class="stat-label">Engineers on the team during the migration</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">3–4</span>
+          <span class="stat-label">Weeks for the whole migration, start to finish</span>
+        </div>
+      </div>
+      <p>All four Angular repositories were migrated from v14 to v21, and the requisition app was brought up to the latest React release as part of the same effort. The whole migration — pilot plus the four overlapping repos — took three to four weeks in total, delivered by half the original team while feature work on the platform continued.</p>
+      <p>The standardization work outlasted the migration itself: consistent lint, test, Playwright, SonarQube, and SBOM checks across all five repositories are the lasting artifact of this project, not just the version bump. The hardest and most expensive part of the whole effort wasn't the framework upgrade — it was the Angular Material breaking changes on the pilot, which took more time than upgrading Angular itself.</p>
+    </article>
+
+    <nav class="cs-next" aria-label="More case studies">
+      <a href="../index.html#projects" class="btn btn-outline">All case studies</a>
+      <a href="agentic-workflow.html" class="btn btn-outline">Next: Agentic development workflow <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </nav>
+
+  </main>
+
+  <footer>
+    <p>
+      Designed &amp; built by <strong>Abul Hasan</strong> ·
+      <a href="https://github.com/ahasan09/ahasan09.github.io" target="_blank" rel="noopener">View source</a> ·
+      <span id="footer-year"></span>
+    </p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
