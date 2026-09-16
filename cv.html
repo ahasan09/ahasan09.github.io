@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Md. Abul Hasan — CV</title>
+<meta name="description" content="Curriculum vitae of Md. Abul Hasan, Senior Staff Software Engineer." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#15202b;
+    --ink-soft:#42505f;
+    --ink-faint:#6b7885;
+    --accent:#14416b;
+    --rule:#d8dee5;
+    --rule-soft:#e8ecf1;
+    --page:#ffffff;
+    --desk:#eef1f5;
+    --page-w:210mm;
+    --page-pad:14mm;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+
+  body{
+    background:var(--desk);
+    color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:9.2pt;
+    line-height:1.34;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .sheet{
+    width:var(--page-w);
+    min-height:297mm;
+    margin:8mm auto;
+    padding:var(--page-pad);
+    background:var(--page);
+    box-shadow:0 1px 3px rgba(20,32,43,.12),0 8px 28px rgba(20,32,43,.10);
+  }
+
+  /* ---------- header ---------- */
+  .name{
+    font-size:21pt;
+    font-weight:700;
+    letter-spacing:-.4pt;
+    line-height:1.1;
+    margin:0;
+  }
+  .role{
+    font-size:11pt;
+    font-weight:600;
+    color:var(--accent);
+    margin:2pt 0 0;
+    letter-spacing:.1pt;
+  }
+  .contact{
+    margin:6pt 0 0;
+    font-size:8.6pt;
+    color:var(--ink-soft);
+  }
+  .contact a{color:var(--ink-soft);text-decoration:none;border-bottom:.5pt solid var(--rule);}
+  .contact .sep{color:var(--ink-faint);padding:0 4pt;}
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    margin:9pt 0 0;
+    border-top:1.2pt solid var(--accent);
+    border-bottom:.6pt solid var(--rule);
+    padding:5.5pt 0;
+  }
+  .stat{padding:0 9pt;border-left:.6pt solid var(--rule-soft);}
+  .stat:first-child{border-left:0;padding-left:0;}
+  .stat b{
+    display:block;
+    font-size:14pt;
+    font-weight:700;
+    color:var(--accent);
+    letter-spacing:-.3pt;
+    line-height:1.15;
+  }
+  .stat span{
+    display:block;
+    font-size:7.6pt;
+    color:var(--ink-faint);
+    line-height:1.3;
+    margin-top:1.5pt;
+  }
+
+  .summary{
+    margin:7pt 0 0;
+    font-size:9.1pt;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+
+  /* ---------- sections ---------- */
+  .section{margin-top:9pt;}
+  .section > h2{
+    font-size:8.2pt;
+    font-weight:700;
+    letter-spacing:1.1pt;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 4.5pt;
+    padding-bottom:2pt;
+    border-bottom:.9pt solid var(--rule);
+  }
+
+  .entry{margin-bottom:6.5pt;}
+  .entry-head,.entry-meta{break-after:avoid;page-break-after:avoid;}
+  .entry:last-child{margin-bottom:0;}
+  .entry-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:10pt;
+  }
+  .entry-title{font-size:10pt;font-weight:600;margin:0;}
+  .entry-title .org{color:var(--accent);}
+  .entry-date{
+    font-size:8.2pt;
+    color:var(--ink-faint);
+    white-space:nowrap;
+    font-variant-numeric:tabular-nums;
+  }
+  .entry-meta{
+    font-size:8.5pt;
+    color:var(--ink-faint);
+    margin:.5pt 0 3pt;
+    font-style:italic;
+  }
+
+  ul.pts{margin:0;padding-left:11pt;list-style:none;}
+  ul.pts > li{
+    position:relative;
+    margin:0 0 1.8pt;
+    padding-left:1pt;
+  }
+  ul.pts > li::before{
+    content:"";
+    position:absolute;
+    left:-8pt;
+    top:4.2pt;
+    width:2.6pt;
+    height:2.6pt;
+    background:var(--accent);
+    border-radius:50%;
+  }
+  ul.pts strong{font-weight:600;}
+
+  .stackline{
+    margin:4pt 0 0;
+    font-size:8.6pt;
+    color:var(--ink-faint);
+    padding-top:3pt;
+    border-top:.5pt dotted var(--rule);
+  }
+  .stackline b{color:var(--ink-soft);font-weight:600;}
+
+  /* ---------- AI block ---------- */
+  .ai-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5pt 16pt;
+  }
+  .ai-col h3{
+    font-size:8.8pt;
+    font-weight:600;
+    margin:0 0 3pt;
+    color:var(--ink);
+  }
+  .ai-col{break-inside:avoid;page-break-inside:avoid;}
+
+  /* ---------- case studies ---------- */
+  .cases{margin:0;padding:0;list-style:none;}
+  .cases li{margin-bottom:3.4pt;break-inside:avoid;}
+  .cases .t{font-weight:600;}
+  .cases .d{color:var(--ink-soft);}
+  .cases .u{
+    display:block;
+    font-size:8pt;
+    color:var(--ink-faint);
+    margin-top:.5pt;
+  }
+  .cases a{color:inherit;text-decoration:none;}
+
+  /* ---------- stack table ---------- */
+  .stack-row{
+    display:grid;
+    grid-template-columns:78pt 1fr;
+    gap:8pt;
+    padding:2.2pt 0;
+    border-bottom:.5pt solid var(--rule-soft);
+    break-inside:avoid;
+  }
+  .stack-row:last-child{border-bottom:0;}
+  .stack-row dt{font-weight:600;font-size:8.6pt;color:var(--accent);}
+  .stack-row dd{margin:0;color:var(--ink-soft);font-size:9pt;}
+  dl{margin:0;}
+
+  /* ---------- education ---------- */
+  .edu li{margin-bottom:2.4pt;}
+  .edu .note{color:var(--ink-faint);font-style:italic;}
+
+  .footer{
+    margin-top:9pt;
+    padding-top:5pt;
+    border-top:.6pt solid var(--rule);
+    font-size:8pt;
+    color:var(--ink-faint);
+    text-align:center;
+  }
+  .footer a{color:var(--ink-faint);text-decoration:none;}
+
+  .print-hint{
+    max-width:var(--page-w);
+    margin:10mm auto 0;
+    padding:8pt 12pt;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-left:3px solid var(--accent);
+    font-size:9pt;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .print-hint b{color:var(--ink);}
+
+  /* ---------- print ---------- */
+  @page{ size:A4; margin:14mm; }
+
+  @media print{
+    :root{--page-pad:0;}
+    html,body{background:#fff;}
+    body{
+      font-size:8.9pt;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+    .sheet{
+      width:auto;
+      min-height:0;
+      margin:0;
+      padding:0;
+      box-shadow:none;
+    }
+    .print-hint{display:none;}
+    a{text-decoration:none;color:inherit;}
+    .contact a{border-bottom:0;}
+    .section{break-inside:auto;}
+    .section > h2{break-after:avoid;page-break-after:avoid;}
+  }
+
+  @media screen and (max-width:230mm){
+    :root{--page-w:100%;}
+    .sheet{margin:0;padding:18px;box-shadow:none;min-height:0;}
+    .print-hint{margin:0;border-left-width:3px;}
+    .stats{grid-template-columns:repeat(2,1fr);gap:8pt 0;}
+    .stat:nth-child(3){border-left:0;padding-left:0;}
+    .ai-grid{grid-template-columns:1fr;}
+    .stack-row{grid-template-columns:1fr;gap:1pt;}
+    .entry-head{flex-direction:column;gap:0;}
+  }
+</style>
+</head>
+<body>
+
+<main class="sheet">
+
+  <header>
+    <h1 class="name">Md. Abul Hasan</h1>
+    <p class="role">Senior Staff Software Engineer</p>
+    <p class="contact">
+      <a href="mailto:abul.hasan@cefalo.com">abul.hasan@cefalo.com</a><span class="sep">·</span><a href="https://linkedin.com/in/ahasan09">linkedin.com/in/ahasan09</a><span class="sep">·</span><a href="https://github.com/ahasan09">github.com/ahasan09</a><span class="sep">·</span><a href="https://ahasan09.github.io">ahasan09.github.io</a><span class="sep">·</span>Dhaka, Bangladesh
+    </p>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><b>13+</b><span>Years shipping production software</span></div>
+    <div class="stat"><b>1M+</b><span>Users on the public Arkivportalen portal I own</span></div>
+    <div class="stat"><b>100K+</b><span>EU users on the Swiss Life Select platform I led</span></div>
+    <div class="stat"><b>5</b><span>Codebases modernized — 4&times; Angular 14&rarr;21, 1&times; React</span></div>
+  </section>
+
+  <p class="summary">
+    I architect and ship frontends for nation-scale platforms, and work across the stack when delivery requires it.
+    At senior staff level I focus on architecture that survives scale, delivery pressure and team changes — writing
+    production code, driving technical direction and mentoring engineers. I run an agentic development workflow
+    end-to-end: an agent pipeline carries a Jira ticket through analysis, design spec, plan, implementation, code
+    review and security review, while I direct the architecture and own every merge. Every role in my career has run
+    on Agile/Scrum — sprints, retros and regular releases.
+  </p>
+
+  <section class="section">
+    <h2>Experience</h2>
+
+    <article class="entry">
+      <div class="entry-head">
+        <p class="entry-title">Senior Staff Software Engineer <span class="org">· Cefalo</span></p>
+        <span class="entry-date">Aug 2022 – Present</span>
+      </div>
+      <p class="entry-meta">Client: Norwegian National Archive (Asta), Norway — nation-scale archive platform, 5 modules, microservice-backed</p>
+      <ul class="pts">
+        <li>Own the frontend of <strong>all 5 modules</strong>, plus the Arkivportalen portal and requisition backends end-to-end — leading the team day-to-day, with oversight of backend work on the remaining modules</li>
+        <li>Led the <strong>Angular 14&rarr;21 migration across four codebases</strong> and one React migration — pilot repo first, then the rest in overlap; ~2 months with a team cut from 10 to 5. Angular Material was deliberately pinned at v14 during the migration to avoid the MDC breaking changes; that pin has since been lifted and the clients now run Material 21</li>
+        <li><strong>Re-architected the Kafka CDC pipeline</strong> (Debezium, Kafka Connect) for reliability and rolled the new architecture out across four modules, keeping Elasticsearch and cross-module shared data in sync with PostgreSQL/MongoDB</li>
+        <li>Built a <strong>digital-archive middleware in Python</strong> — pulls portal data into its own PostgreSQL and reconciles publish status against an external digital-media system, with per-item checkpointing and retries; the portal never calls the external system</li>
+        <li>Built the dynamic permission engine and Elasticsearch-backed search; implemented WebSocket live notifications; Google Analytics integration and UI improvements on the portal</li>
+        <li>Set up self-hosted Bitbucket Pipelines runners on Azure VMs for CI</li>
+        <li>Introduced the <strong>agentic delivery workflow</strong> now used by the whole team — see the next section</li>
+        <li><strong>Outcome:</strong> production system serving 10,000+ archivists and a public portal with 1M+ users; migration roadmap delivered with a 50% leaner team</li>
+      </ul>
+      <p class="stackline"><b>Stack:</b> Angular 21, React 19, TypeScript, Kotlin, Java 25, Spring Boot, Python, PostgreSQL, MongoDB, Elasticsearch, Apache Kafka, Debezium, ActiveMQ, Keycloak, Docker, Azure</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <p class="entry-title">Principal Software Engineer <span class="org">· SELISE Digital Platforms</span></p>
+        <span class="entry-date">2018 – Jul 2022</span>
+      </div>
+      <p class="entry-meta">Client: Swiss Life Select fintech platform, EU — multi-tenant, microservice-backed advisor &amp; customer portal</p>
+      <ul class="pts">
+        <li>Owned core frontend architecture for a platform serving <strong>100,000+ users</strong> across the EU on 4 tenant builds; led the 12-member frontend team within a ~20-member product team</li>
+        <li>Built the company-wide Angular frontend architecture (SSR-capable) used by all SELISE teams — teams published shared components, and common packages (auth, SSO, SignalR-integrated notifications, dynamic datatable, dialog) shipped on an internal npm registry</li>
+        <li>Delivered SSO (OIDC), multi-tenancy via a shared component library with separate per-tenant builds, PWA and push notifications</li>
+        <li>Real-time delivery via SignalR + RabbitMQ; data-intensive dashboards with Chart.js and AG Grid</li>
+        <li>Migrated 4 projects from Angular 2 to 12</li>
+      </ul>
+      <p class="stackline"><b>Stack:</b> Angular, TypeScript, .NET Core, C#, MongoDB, Redis, RabbitMQ, SignalR, JWT, PWA</p>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head">
+        <p class="entry-title">Earlier Career</p>
+        <span class="entry-date">2013 – 2017</span>
+      </div>
+      <ul class="pts">
+        <li><strong>Senior Software Engineer</strong> — Swiss Life ePrivateWealth (2017): internal/external insurance portal; AngularJS + .NET Core microservices, SignalR real-time</li>
+        <li><strong>Software Engineer</strong> — Ruf Informatik E-Service (2016): reservation platform, social-feed aggregation, public statistics dashboards</li>
+        <li><strong>Developer</strong> — Computer Source Bangladesh (2013–2015): end-to-end supply-chain ERP — inventory, RMA, sales, POS, accounts, PMS</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="section">
+    <h2>AI &amp; Agentic Development</h2>
+    <div class="ai-grid">
+      <div class="ai-col">
+        <h3>The pipeline</h3>
+        <ul class="pts">
+          <li>Seven stages: read the Jira ticket, analyze the requirement, design spec, implementation plan, implement, code review, security review</li>
+          <li>Runs on <strong>Claude Code</strong>. Generic stages use the Superpowers skill library; I wrote the project-specific skills</li>
+          <li>Spec and plan publish to Confluence and back to the Jira ticket</li>
+          <li>I own every merge — no agent output reaches a shared branch without human review</li>
+        </ul>
+      </div>
+      <div class="ai-col">
+        <h3>Guardrails I built</h3>
+        <ul class="pts">
+          <li>Wrote <strong>all seven Claude Code hooks</strong> in the repository</li>
+          <li>Block pushes, block commits on shared branches, block no-verify bypasses</li>
+          <li>Shipped DB migrations made immutable once they reach the integration branch</li>
+          <li>Credential files blocked from reads and commits; tool permission rules (read-only Figma, no Jira deletes)</li>
+        </ul>
+      </div>
+      <div class="ai-col">
+        <h3>Team enablement</h3>
+        <ul class="pts">
+          <li>Wrote the <strong>CLAUDE.md</strong> conventions for the monorepo and nine module directories</li>
+          <li>Wrote the team's Jira ticket-creation skill, mirroring the Rovo Task Creator agent</li>
+          <li>Set up the MCP server configuration: Jira, Confluence, Figma, Context7</li>
+          <li>Took part in a two-month team AI pilot; workflow published as a public case study</li>
+        </ul>
+      </div>
+      <div class="ai-col">
+        <h3>Other AI work</h3>
+        <ul class="pts">
+          <li>i18n tooling engine assigning stable identifiers to translation strings — removed a recurring class of merge conflict</li>
+          <li>AI-assisted test generation for Angular unit tests and Playwright E2E specs</li>
+          <li>Design-to-code from Figma through MCP</li>
+          <li>Commit throughput rose from ~44/month to 200+/month after adoption</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Architecture Case Studies</h2>
+    <ul class="cases">
+      <li><a href="https://ahasan09.github.io/case-studies/angular-migration.html"><span class="t">Migrating 5 codebases to Angular 21 with half the team</span> <span class="d">— sequencing and risk management</span><span class="u">ahasan09.github.io/case-studies/angular-migration.html</span></a></li>
+      <li><a href="https://ahasan09.github.io/case-studies/agentic-workflow.html"><span class="t">An agentic workflow: from Jira ticket to reviewed PR</span> <span class="d">— agent pipeline with a human owning every merge</span><span class="u">ahasan09.github.io/case-studies/agentic-workflow.html</span></a></li>
+      <li><a href="https://ahasan09.github.io/case-studies/kafka-cdc-search.html"><span class="t">CDC with Kafka: keeping Elasticsearch in sync</span> <span class="d">— why change data capture beat dual writes</span><span class="u">ahasan09.github.io/case-studies/kafka-cdc-search.html</span></a></li>
+      <li><a href="https://ahasan09.github.io/case-studies/archive-middleware.html"><span class="t">A pull-only middleware: publish status behind a rate-limited API</span> <span class="d">— per-item checkpointing at 1M-user scale</span><span class="u">ahasan09.github.io/case-studies/archive-middleware.html</span></a></li>
+      <li><a href="https://ahasan09.github.io/case-studies/swiss-life-platform.html"><span class="t">A multi-tenant fintech platform for 100K EU users</span> <span class="d">— SSO, tenancy isolation, PWA, real-time</span><span class="u">ahasan09.github.io/case-studies/swiss-life-platform.html</span></a></li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Stack</h2>
+    <dl>
+      <div class="stack-row"><dt>Frontend</dt><dd>Angular, React, TypeScript, JavaScript, RxJS, Redux, Angular Material, PrimeNG, PrimeReact, Bootstrap, PWA, SSR</dd></div>
+      <div class="stack-row"><dt>Backend</dt><dd>Kotlin, Java, Spring Boot, .NET Core, C#, Node.js, NestJS, Express, Python, REST, GraphQL, JWT, OAuth2, Keycloak, SSO</dd></div>
+      <div class="stack-row"><dt>Data &amp; messaging</dt><dd>PostgreSQL, MongoDB, MSSQL, Redis, Elasticsearch, Apache Kafka, Debezium CDC, RabbitMQ, ActiveMQ, SignalR, WebSocket</dd></div>
+      <div class="stack-row"><dt>Cloud &amp; delivery</dt><dd>Docker, Bitbucket Pipelines, Microsoft Azure, AWS, Azure DevOps, Jenkins, GitHub Actions, Application Insights, Azure Blob Storage, Grafana/Loki</dd></div>
+      <div class="stack-row"><dt>AI &amp; agentic</dt><dd>Claude Code, custom agent skills, Claude Code hooks, MCP servers (Jira, Confluence, Figma, Context7), agent-assisted code &amp; security review, prompt and context engineering</dd></div>
+      <div class="stack-row"><dt>Quality &amp; practice</dt><dd>Playwright, Jest, Jasmine, Karma, SonarQube, TDD, DDD, SOLID, Design Patterns, Clean Architecture, Agile/Scrum</dd></div>
+    </dl>
+  </section>
+
+  <section class="section">
+    <h2>Education &amp; Certification</h2>
+    <ul class="pts edu">
+      <li>M.Sc. in Computer Science &amp; Engineering — Jahangirnagar University</li>
+      <li>B.Sc. in Computer Science &amp; Engineering — Patuakhali Science and Technology University</li>
+      <li>C# .NET Certification — BASIS (2013)</li>
+      <li>Claude AI development course, Udemy <span class="note">— in progress; preparing for the certification exam</span></li>
+    </ul>
+  </section>
+
+  <p class="footer">
+    Recommendations from managers and peers: <a href="https://linkedin.com/in/ahasan09">linkedin.com/in/ahasan09</a>
+    &nbsp;·&nbsp; Full case studies with architecture diagrams: <a href="https://ahasan09.github.io">ahasan09.github.io</a>
+  </p>
+
+</main>
+
+<aside class="print-hint">
+  <b>To export a PDF:</b> press <b>Ctrl&nbsp;+&nbsp;P</b> (⌘&nbsp;P on macOS) &rarr; Destination <b>Save as PDF</b> &rarr;
+  Paper size <b>A4</b> &rarr; Margins <b>Default</b> &rarr; turn <b>Background graphics ON</b> and headers/footers <b>OFF</b>.
+  This box does not appear in the PDF.
+</aside>
+
+</body>
+</html>
