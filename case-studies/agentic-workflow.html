@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with every stage built as a separate custom skill." />
+  <meta name="description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
-  <meta property="og:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with every stage built as a separate custom skill." />
+  <meta property="og:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
-  <meta name="twitter:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with every stage built as a separate custom skill." />
+  <meta name="twitter:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "An Agentic Development Workflow: From Jira Ticket to Reviewed PR",
-    "description": "The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — with every stage built as a separate custom skill.",
+    "description": "The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote.",
     "url": "https://ahasan09.github.io/case-studies/agentic-workflow.html",
     "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
     "datePublished": "2026-07-18"
@@ -77,13 +77,13 @@
       <div class="cs-meta">
         <span><strong>Role:</strong> Senior Staff Software Engineer</span>
         <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
-        <span><strong>Stack:</strong> Claude Code · custom skills · Jira</span>
+        <span><strong>Stack:</strong> Claude Code · Superpowers + custom skills · Jira</span>
       </div>
     </header>
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>This is the day-to-day development process I run at Cefalo on the Norwegian National Archive (Asta) work — a process I built and drive myself. It's built on Claude Code with a Jira MCP integration, and every stage of the pipeline is a separate custom skill that I built rather than a single monolithic prompt.</p>
+      <p>This is the day-to-day development process I run at Cefalo on the Norwegian National Archive (Asta) work — a process I built and drive myself. It's built on Claude Code with a Jira MCP integration. The generic stages run on the Superpowers skill library; I wrote the project-specific skills and the guardrail hooks myself, rather than driving the whole thing from a single monolithic prompt.</p>
       <p>What started as my own personal workflow has since become the team's: the rest of the team is adopting the same pipeline for their own ticket work.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
@@ -108,7 +108,7 @@
       </div>
 
       <h2 id="decision">Decision &amp; architecture</h2>
-      <p>The pipeline has seven stages, each implemented as its own custom skill run through Claude Code:</p>
+      <p>The pipeline has seven stages, each run through Claude Code as its own skill:</p>
       <ol>
         <li><strong>Fetch the Jira ticket</strong> — via the Jira MCP integration.</li>
         <li><strong>Analyze the requirement</strong> — turn the ticket into a concrete understanding of what's being asked.</li>

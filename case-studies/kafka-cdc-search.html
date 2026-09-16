@@ -83,7 +83,7 @@
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>I work on the backend for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, across a Java/Kotlin stack backed by PostgreSQL and MongoDB. Elasticsearch powers archive search for both archivists and members of the public, and the pipeline that keeps those search indexes in sync with the source databases is something I designed personally.</p>
+      <p>I work on the backend for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, across a Java/Kotlin stack backed by PostgreSQL and MongoDB. Elasticsearch powers archive search for both archivists and members of the public. A colleague built the first version of the pipeline that keeps those search indexes in sync with the source databases; I re-designed it for reliability and rolled the new architecture out across four modules.</p>
       <p>Search freshness matters here in a very direct way: archivists change records, and the public and other archivists need to be able to search on what just changed, not on a stale snapshot.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
