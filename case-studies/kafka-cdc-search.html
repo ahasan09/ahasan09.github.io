@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta name="description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB for the Norwegian national archives." />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB — Abul Hasan" />
-  <meta property="og:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta property="og:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB for the Norwegian national archives." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://ahasan09.github.io/case-studies/kafka-cdc-search.html" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB — Abul Hasan" />
-  <meta name="twitter:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive." />
+  <meta name="twitter:description" content="Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB for the Norwegian national archives." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/case-studies/kafka-cdc-search.html" />
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "CDC with Kafka: Keeping Elasticsearch in Sync with PostgreSQL and MongoDB",
-    "description": "Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB at the Norwegian National Archive.",
+    "description": "Why we chose change data capture over dual writes and batch reindexing to keep Elasticsearch search indexes fresh against PostgreSQL and MongoDB for the Norwegian national archives.",
     "url": "https://ahasan09.github.io/case-studies/kafka-cdc-search.html",
     "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
     "datePublished": "2026-07-18"
@@ -76,14 +76,14 @@
       <p class="cs-summary">Search is only as good as its index freshness. This is how change data capture with Kafka replaced fragile sync approaches for the archive's Elasticsearch-backed search.</p>
       <div class="cs-meta">
         <span><strong>Role:</strong> Senior Staff Software Engineer</span>
-        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian national archives</span>
         <span><strong>Stack:</strong> Kafka · Elasticsearch · Java/Kotlin</span>
       </div>
     </header>
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>I work on the backend for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, across a Java/Kotlin stack backed by PostgreSQL and MongoDB. Elasticsearch powers archive search for both archivists and members of the public. A colleague built the first version of the pipeline that keeps those search indexes in sync with the source databases; I re-designed it for reliability and rolled the new architecture out across four modules.</p>
+      <p>I work on the backend of an archive management system for the Norwegian national archives at Cefalo as Senior Staff Software Engineer, across a Java/Kotlin stack backed by PostgreSQL and MongoDB. Elasticsearch powers archive search for both archivists and members of the public. A colleague built the first version of the pipeline that keeps those search indexes in sync with the source databases; I re-designed it for reliability and rolled the new architecture out across four modules.</p>
       <p>Search freshness matters here in a very direct way: archivists change records, and the public and other archivists need to be able to search on what just changed, not on a stale snapshot.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>

@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta name="description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, for the Norwegian national archives." />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="Migrating 5 Frontend Codebases to Angular 21 with Half the Team — Abul Hasan" />
-  <meta property="og:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta property="og:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, for the Norwegian national archives." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://ahasan09.github.io/case-studies/angular-migration.html" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Migrating 5 Frontend Codebases to Angular 21 with Half the Team — Abul Hasan" />
-  <meta name="twitter:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive." />
+  <meta name="twitter:description" content="How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, for the Norwegian national archives." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/case-studies/angular-migration.html" />
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "Migrating 5 Frontend Codebases to Angular 21 with Half the Team",
-    "description": "How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, at the Norwegian National Archive.",
+    "description": "How we migrated five production frontend repositories — four from Angular 14 to 21, one to the latest React — after the team went from 10 engineers to 5 — a pilot repo first, then the rest in overlap, with CI standardization across all of them, for the Norwegian national archives.",
     "url": "https://ahasan09.github.io/case-studies/angular-migration.html",
     "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
     "datePublished": "2026-07-18"
@@ -73,17 +73,17 @@
     <header class="cs-hero">
       <p class="cs-kicker">Case study · Frontend platform · Migration</p>
       <h1 class="cs-title">Migrating 5 Frontend Codebases to Angular 21 with Half the Team</h1>
-      <p class="cs-summary">The Norwegian National Archive's frontend platform spanned five repositories, and the team had just been rebalanced from 10 engineers to 5. This is how the migration shipped anyway — a pilot repo first, then the rest in overlap.</p>
+      <p class="cs-summary">The frontend platform of the Norwegian national archives' archive management system spanned five repositories, and the team had just been rebalanced from 10 engineers to 5. This is how the migration shipped anyway — a pilot repo first, then the rest in overlap.</p>
       <div class="cs-meta">
         <span><strong>Role:</strong> Senior Staff Software Engineer — migration lead</span>
-        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian national archives</span>
         <span><strong>Stack:</strong> Angular 21 · TypeScript · CI/CD</span>
       </div>
     </header>
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>I led the frontend platform for the Norwegian National Archive (Asta) at Cefalo as Senior Staff Software Engineer, with migration-lead responsibility across five production frontend repositories: the archive management system, the admin app, the archive storage system, the public search app, and the requisition app. Four of these were Angular applications; the requisition app was built in React and was brought up to the latest React release as part of the same modernization effort.</p>
+      <p>I led the frontend platform of an archive management system for the Norwegian national archives at Cefalo as Senior Staff Software Engineer, with migration-lead responsibility across five production frontend repositories: the archive management system, the admin app, the archive storage system, the public search app, and the requisition app. Four of these were Angular applications; the requisition app was built in React and was brought up to the latest React release as part of the same modernization effort.</p>
       <p>The platform serves a production system used by more than 10,000 archivists, plus members of the public, so the migration had to happen without disrupting a system that was actively in use.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>

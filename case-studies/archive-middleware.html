@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="How a Python middleware with per-item checkpointing keeps the Norwegian National Archive's 1M-user portal in sync with a rate-limited external digital-media system — without the portal ever calling it." />
+  <meta name="description" content="How a Python middleware with per-item checkpointing keeps a Norwegian national archive portal with 1M users in sync with a rate-limited external digital-media system — without the portal ever calling it." />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="A Pull-Only Middleware: Syncing Publish Status Behind a Rate-Limited API — Abul Hasan" />
-  <meta property="og:description" content="How a Python middleware with per-item checkpointing keeps the Norwegian National Archive's 1M-user portal in sync with a rate-limited external digital-media system — without the portal ever calling it." />
+  <meta property="og:description" content="How a Python middleware with per-item checkpointing keeps a Norwegian national archive portal with 1M users in sync with a rate-limited external digital-media system — without the portal ever calling it." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://ahasan09.github.io/case-studies/archive-middleware.html" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="A Pull-Only Middleware: Syncing Publish Status Behind a Rate-Limited API — Abul Hasan" />
-  <meta name="twitter:description" content="How a Python middleware with per-item checkpointing keeps the Norwegian National Archive's 1M-user portal in sync with a rate-limited external digital-media system — without the portal ever calling it." />
+  <meta name="twitter:description" content="How a Python middleware with per-item checkpointing keeps a Norwegian national archive portal with 1M users in sync with a rate-limited external digital-media system — without the portal ever calling it." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/case-studies/archive-middleware.html" />
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "A Pull-Only Middleware: Syncing Publish Status Behind a Rate-Limited API",
-    "description": "How a Python middleware with per-item checkpointing keeps the Norwegian National Archive's 1M-user portal in sync with a rate-limited external digital-media system — without the portal ever calling it.",
+    "description": "How a Python middleware with per-item checkpointing keeps a Norwegian national archive portal with 1M users in sync with a rate-limited external digital-media system — without the portal ever calling it.",
     "url": "https://ahasan09.github.io/case-studies/archive-middleware.html",
     "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
     "datePublished": "2026-07-18"
@@ -76,14 +76,14 @@
       <p class="cs-summary">The public portal used to call an external digital-media system's single-item status API directly, storing nothing. This is how a pull-only middleware replaced that — and why the portal never calls the media system anymore.</p>
       <div class="cs-meta">
         <span><strong>Role:</strong> Senior Staff Software Engineer</span>
-        <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
+        <span><strong>Org:</strong> Cefalo · Norwegian national archives</span>
         <span><strong>Stack:</strong> Python · PostgreSQL · Elasticsearch</span>
       </div>
     </header>
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>The public Arkivportalen portal at the Norwegian National Archive serves 1M+ users, and its Elasticsearch-backed search needs to reflect which archive items are published on an external digital-media system. That system is external in a specific sense: content reaches it from many different sources, and the archive side does not publish to it — the portal only needs to know, for each item, what its publish status there is.</p>
+      <p>The public Arkivportalen portal serves 1M+ users, and its Elasticsearch-backed search needs to reflect which archive items are published on an external digital-media system. That system is external in a specific sense: content reaches it from many different sources, and the archive side does not publish to it — the portal only needs to know, for each item, what its publish status there is.</p>
       <p>I built the middleware that answers that question, and it's in production today. The service was started in Python, and I continued in it rather than rewrite it in something else — the language choice was inherited, and it hasn't been a reason to change course. Development was AI-assisted, using Claude.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
@@ -143,7 +143,7 @@
 
     <nav class="cs-next" aria-label="More case studies">
       <a href="../index.html#projects" class="btn btn-outline">All case studies</a>
-      <a href="swiss-life-platform.html" class="btn btn-outline">Next: Multi-tenant fintech platform <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+      <a href="fintech-platform.html" class="btn btn-outline">Next: Multi-tenant fintech platform <svg class="btn-icon" aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
     </nav>
 
   </main>
