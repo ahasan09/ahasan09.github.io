@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
+  <meta name="description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library, team-written project skills, and guardrail hooks I wrote." />
   <meta name="author" content="Abul Hasan" />
   <meta name="theme-color" content="#0d1117" />
   <meta name="color-scheme" content="dark" />
 
   <meta property="og:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
-  <meta property="og:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
+  <meta property="og:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library, team-written project skills, and guardrail hooks I wrote." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
   <meta property="og:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="An Agentic Development Workflow: From Jira Ticket to Reviewed PR — Abul Hasan" />
-  <meta name="twitter:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote." />
+  <meta name="twitter:description" content="The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library, team-written project skills, and guardrail hooks I wrote." />
   <meta name="twitter:image" content="https://ahasan09.github.io/avatar-square.png" />
 
   <link rel="canonical" href="https://ahasan09.github.io/case-studies/agentic-workflow.html" />
@@ -35,7 +35,7 @@
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "headline": "An Agentic Development Workflow: From Jira Ticket to Reviewed PR",
-    "description": "The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library plus the project-specific skills I wrote.",
+    "description": "The agent pipeline I run in production work: fetch a Jira ticket, analyze the requirement, generate a design spec and plan, implement, then run code review and security review — built on Claude Code with the Superpowers skill library, team-written project skills, and guardrail hooks I wrote.",
     "url": "https://ahasan09.github.io/case-studies/agentic-workflow.html",
     "author": { "@type": "Person", "name": "Abul Hasan", "url": "https://ahasan09.github.io/" },
     "datePublished": "2026-07-18"
@@ -77,18 +77,18 @@
       <div class="cs-meta">
         <span><strong>Role:</strong> Senior Staff Software Engineer</span>
         <span><strong>Org:</strong> Cefalo · Norwegian National Archive (Asta)</span>
-        <span><strong>Stack:</strong> Claude Code · Superpowers + custom skills · Jira</span>
+        <span><strong>Stack:</strong> Claude Code · Superpowers + team skills · hooks · MCP (Jira, Confluence, Figma, Context7)</span>
       </div>
     </header>
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>This is the day-to-day development process I run at Cefalo on the Norwegian National Archive (Asta) work — a process I built and drive myself. It's built on Claude Code with a Jira MCP integration. The generic stages run on the Superpowers skill library; I wrote the project-specific skills and the guardrail hooks myself, rather than driving the whole thing from a single monolithic prompt.</p>
-      <p>What started as my own personal workflow has since become the team's: the rest of the team is adopting the same pipeline for their own ticket work.</p>
+      <p>This is the day-to-day development process I run at Cefalo on the Norwegian National Archive (Asta) work — a process I built and drive myself. It's built on Claude Code, with MCP servers connecting Jira, Confluence, Figma (design-to-code) and Context7 (library documentation). The generic stages run on the Superpowers skill library and the project-specific stages on skills the team wrote; I wrote the guardrail hooks, rather than driving the whole thing from a single monolithic prompt.</p>
+      <p>It started as my own workflow after a two-month team AI pilot, and it is now the whole team's way of taking a ticket to a reviewed change.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
       <p>The goal was to raise delivery velocity without lowering the quality bar — this is a production government system, and speed can't come at the cost of correctness or safety.</p>
-      <p>That put hard constraints on how much autonomy the agent could be given. It must never operate outside a set of guardrails: no access to secrets, no pushes to <code>develop</code>, <code>release</code>, or <code>master</code> — those are blocked outright — and the agent is only ever allowed to work on feature branches. On top of that, I review every single change the AI makes before anything merges. Nothing lands without a human in the loop.</p>
+      <p>That put hard constraints on how much autonomy the agent could be given. It must never operate outside a set of guardrails: no access to credential files, no pushes, and no commits on shared branches — those are blocked outright — so the agent only ever works on feature branches. On top of that, I review every single change the AI makes before anything merges. Nothing lands without a human in the loop.</p>
 
       <h2 id="options">Options considered</h2>
       <div class="cs-option rejected">
@@ -114,7 +114,7 @@
         <li><strong>Analyze the requirement</strong> — turn the ticket into a concrete understanding of what's being asked.</li>
         <li><strong>Generate a design spec</strong> — published to Confluence automatically, one page per ticket per sprint.</li>
         <li><strong>Create an implementation plan</strong> — also published to Confluence, with progress commented back onto the Jira ticket via a dedicated skill.</li>
-        <li><strong>Implement</strong> — all work happens on a feature branch; the agent cannot push to <code>develop</code>, <code>release</code>, or <code>master</code>. For UI work, designs come into the pipeline through the Figma MCP, so what ships matches the Figma design precisely.</li>
+        <li><strong>Implement</strong> — all work happens on a feature branch; hooks block the agent from pushing or committing to shared branches. For UI work, designs come into the pipeline through the Figma MCP, so what ships matches the Figma design precisely.</li>
         <li><strong>Code review</strong> — run as a skill before anything is presented for merge.</li>
         <li><strong>Security review</strong> — a second, separate review pass focused on security.</li>
       </ol>
@@ -170,9 +170,21 @@
         <figcaption>All seven stages run as skills — I review every change the AI makes before anything merges, a gate that applies across the whole pipeline, not just one stage.</figcaption>
       </figure>
 
+      <h2 id="guardrails">Guardrails and team enablement</h2>
+      <p>The safety of the pipeline doesn't depend on the agent following instructions; it is enforced by the tooling. I wrote all seven Claude Code hooks:</p>
+      <ul>
+        <li>Block pushes, commits on shared branches, and <code>--no-verify</code> bypasses.</li>
+        <li>Make shipped database migration scripts immutable.</li>
+        <li>Block access to credential files.</li>
+        <li>Enforce separate translation commits, backed by a translation merge driver.</li>
+      </ul>
+      <p>Tool permission rules narrow the integrations further: Figma is read-only, and Jira has no delete operations.</p>
+      <p>To make every agent session behave the same way, I wrote the <code>CLAUDE.md</code> conventions for the monorepo and its nine module directories, the team's Jira ticket-creation skill and the i18n authoring rule, and adapted shared PRD, task-breakdown and plan-interrogation skills.</p>
+
       <h2 id="outcome">Outcome</h2>
-      <p>Development time has come down, and the pipeline finds more complex bugs than the previous manual process did — it resolves more cases than before.</p>
-      <p>The honest trade-off is that the bottleneck moved rather than disappeared: review now takes up more of my time than writing code used to. The pipeline also isn't perfect — it sometimes misses edge cases, and those get caught in my review rather than before it. The mitigation that's worked is investing more in the plan stage: a more thorough, "perfect" plan measurably reduces how often edge cases get missed later on. The rest of the team is converging on this same process as a result.</p>
+      <p>My commit throughput rose from about 44 to more than 200 a month once the pipeline was in place, and the pipeline catches more complex defects than the previous manual process did.</p>
+      <p>The honest trade-off is that the bottleneck moved rather than disappeared: review now takes up more of my time than writing code used to. The pipeline also isn't perfect — it sometimes misses edge cases, and those get caught in my review rather than before it. The mitigation that's worked is investing more in the plan stage: a more thorough, "perfect" plan measurably reduces how often edge cases get missed later on. The whole team now works this way.</p>
+      <p>Related tooling grew out of the same work: an i18n engine that gives translation strings stable identifiers, which removed a recurring class of merge conflicts; AI-assisted generation of Angular unit tests and Playwright E2E specs; and design-to-code from Figma through MCP.</p>
     </article>
 
     <nav class="cs-next" aria-label="More case studies">

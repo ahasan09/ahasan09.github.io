@@ -15,6 +15,8 @@ ahasan09.github.io/
   script.js           # Navbar scroll effect, hamburger menu, active link tracking, fade-in animations
   avatar.png          # Hero avatar image (200x200 displayed)
   avatar-square.png   # Open Graph social preview image
+  cv.html             # Print-ready CV page; source of abul-hasan-cv.pdf
+  abul-hasan-cv.pdf   # Downloadable CV (headless Chrome: --no-pdf-header-footer --print-to-pdf from cv.html)
 ```
 
 ## Sections
