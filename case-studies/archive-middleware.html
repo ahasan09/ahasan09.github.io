@@ -83,7 +83,7 @@
 
     <article class="cs-article">
       <h2 id="context">Context</h2>
-      <p>The public Arkivportalen portal serves 1M+ users, and its Elasticsearch-backed search needs to reflect which archive items are published on an external digital-media system. That system is external in a specific sense: content reaches it from many different sources, and the archive side does not publish to it — the portal only needs to know, for each item, what its publish status there is.</p>
+      <p>The public archive portal serves 1M+ users, and its Elasticsearch-backed search needs to reflect which archive items are published on an external digital-media system. That system is external in a specific sense: content reaches it from many different sources, and the archive side does not publish to it — the portal only needs to know, for each item, what its publish status there is.</p>
       <p>I built the middleware that answers that question, and it's in production today. The service was started in Python, and I continued in it rather than rewrite it in something else — the language choice was inherited, and it hasn't been a reason to change course. Development was AI-assisted, using Claude.</p>
 
       <h2 id="problem">Problem &amp; constraints</h2>
@@ -110,7 +110,7 @@
         <svg viewBox="0 0 720 300" role="img" aria-label="Diagram: the middleware, running Python with its own PostgreSQL store, pulls item data from the portal and separately polls the external digital-media system's single-item status API, one item at a time, updating stored publish status. A separate scheduler inside the portal pulls that publish status from the middleware into the portal's Elasticsearch index. Both directions are pull-only — nothing pushes into the portal, and the portal never calls the media system directly.">
           <rect class="diagram-box" x="20" y="100" width="160" height="100"/>
           <text class="diagram-label" x="100" y="130" text-anchor="middle">Portal</text>
-          <text class="diagram-label" x="100" y="148" text-anchor="middle">Arkivportalen</text>
+          <text class="diagram-label" x="100" y="148" text-anchor="middle">Public archive</text>
           <text class="diagram-sub" x="100" y="168" text-anchor="middle">Elasticsearch + scheduler</text>
 
           <rect class="diagram-box-accent" x="280" y="85" width="170" height="130"/>
