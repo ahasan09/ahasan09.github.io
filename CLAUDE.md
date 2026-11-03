@@ -15,18 +15,35 @@ ahasan09.github.io/
   script.js           # Navbar scroll effect, hamburger menu, active link tracking, fade-in animations
   avatar.png          # Hero avatar image (200x200 displayed)
   avatar-square.png   # Open Graph social preview image
-  cv.html             # Print-ready CV page; source of abul-hasan-cv.pdf
-  abul-hasan-cv.pdf   # Downloadable CV (headless Chrome: --no-pdf-header-footer --print-to-pdf from cv.html)
+  cv.html             # Print-ready CV page; source of truth for abul-hasan-cv.pdf
+  abul-hasan-cv.pdf   # Downloadable CV, generated from cv.html (served by the hero "Download CV" button)
+  case-studies/       # Five architecture case studies + case-study.css
 ```
 
 ## Sections
 - Hero with avatar, code card mock (`engineer.ts`), and CTA buttons
-- About with stats grid and "What I Do" highlights
-- Skills grouped into Frontend, Backend, Databases & Messaging, DevOps & Cloud, Testing & Quality
+- Impact with stats grid and "How I work / How I build now" highlights
 - Experience timeline (Cefalo, SELISE, earlier roles)
-- Featured Projects grid linking to GitHub repos
-- Education & Certification cards
+- Stack grouped into Frontend, Backend, Data & messaging, Cloud & delivery, Quality & practice
+- Case Studies grid linking to `case-studies/*.html`
+- Education & Certification cards (incl. Claude Certified Architect – Foundations, Nov 2026, Credly link)
 - Contact links (LinkedIn, GitHub, email)
+
+## CV workflow
+- Edit `cv.html`, then regenerate the PDF from the repo root:
+  ```bash
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+    --no-pdf-header-footer --print-to-pdf=abul-hasan-cv.pdf "file://$PWD/cv.html"
+  ```
+- Verify the PDF is still 2 A4 pages (read it back) before committing; commit `cv.html` and the PDF together
+- Keep `cv.html`, `index.html` (timeline, stack, education, JSON-LD) and the case studies consistent — a fact changed in one usually needs changing in the others
+- Local exports `abul-hasan-cv_v*.pdf` are gitignored; don't commit them
+
+## Content rules (public site)
+- **No client names** anywhere: page text, `<meta>`/OG/Twitter tags, JSON-LD, diagram labels, file names and URLs. Use generic descriptions: "archive management system for the Norwegian national archives", "the public archive portal", "fintech platform connecting IFAs and their customers (EU)", "Bangladeshi computer retailer". Employers (Cefalo, SELISE) may be named
+- **Email:** use `abulhasanraju@gmail.com` only, never the work address
+- **Source of truth for facts:** the user's internal Cefalo CV (Google Doc). When the site disagrees with it, the Google Doc wins. Never edit that doc, and never publish it — it names clients
+- Don't overclaim: credit team work as team work (e.g. CI standardization, project skills are team-written; the user wrote the guardrail hooks and set up the self-hosted runners)
 
 ## View Locally
 ```bash
