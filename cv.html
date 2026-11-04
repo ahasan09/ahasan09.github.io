@@ -306,12 +306,13 @@
         <p class="entry-title">Senior Staff Software Engineer <span class="org">· Cefalo</span></p>
         <span class="entry-date">Aug 2022 – Present</span>
       </div>
+      <p class="entry-meta">Senior SE (Aug 2022) → Lead SE (Jan 2024) → Senior Staff SE (May 2025)</p>
       <p class="entry-meta">Project: Archive management system for the Norwegian national archives — 5 modules, microservice-backed</p>
       <ul class="pts">
         <li>Own the frontend of <strong>all 5 modules</strong>, plus the public archive portal and requisition backends end-to-end — leading the team day-to-day, with oversight of backend work on the remaining modules</li>
-        <li>Led the <strong>Angular 14&rarr;21 migration across four codebases</strong> and one React migration — pilot repo first, then the rest in overlap; ~2 months with a team cut from 10 to 5. Angular Material was deliberately pinned at v14 during the migration to avoid the MDC breaking changes; that pin has since been lifted and the clients now run Material 21</li>
+        <li>Led the <strong>Angular 14&rarr;21 migration across four codebases</strong> and one React migration — pilot repo first, then the rest in overlap; ~2 months with a team cut from 10 to 5. Angular Material was pinned at v14 to avoid MDC breaking changes, and has since moved to Material 21</li>
         <li><strong>Re-architected the Kafka CDC pipeline</strong> (Debezium, Kafka Connect) for reliability and rolled the new architecture out across four modules, keeping Elasticsearch and cross-module shared data in sync with PostgreSQL/MongoDB</li>
-        <li>Built a <strong>digital-archive middleware in Python</strong> — pulls portal data into its own PostgreSQL and reconciles publish status against an external digital-media system, with per-item checkpointing and retries; the portal never calls the external system</li>
+        <li>Built a <strong>digital-archive middleware in Python</strong> — pulls portal data into its own PostgreSQL and reconciles publish status against an external digital-media system, with per-item checkpointing and retries</li>
         <li>Built the dynamic permission engine and Elasticsearch-backed search; implemented WebSocket live notifications; Google Analytics integration and UI improvements on the portal</li>
         <li>Set up self-hosted Bitbucket Pipelines runners on Azure VMs for CI</li>
         <li>Introduced the <strong>agentic delivery workflow</strong> now used by the whole team — see the next section</li>
@@ -323,28 +324,28 @@
     <article class="entry">
       <div class="entry-head">
         <p class="entry-title">Principal Software Engineer <span class="org">· SELISE Digital Platforms</span></p>
-        <span class="entry-date">2018 – Jul 2022</span>
+        <span class="entry-date">Apr 2015 – Jul 2022</span>
       </div>
-      <p class="entry-meta">Project: Fintech platform connecting IFAs and their customers, EU — multi-tenant, microservice-backed advisor &amp; customer portal</p>
+      <p class="entry-meta">Software Engineer (Apr 2015) → Principal SE (Jan 2018)</p>
+      <p class="entry-meta">Project: Fintech platform connecting IFAs and their customers, EU — multi-tenant, microservice-backed</p>
       <ul class="pts">
         <li>Owned core frontend architecture for a platform serving <strong>100,000+ users</strong> across the EU on 4 tenant builds; led the 12-member frontend team within a ~20-member product team</li>
         <li>Built the company-wide Angular frontend architecture (SSR-capable) used by all SELISE teams — teams published shared components, and common packages (auth, SSO, SignalR-integrated notifications, dynamic datatable, dialog) shipped on an internal npm registry</li>
         <li>Delivered SSO (OIDC), multi-tenancy via a shared component library with separate per-tenant builds, PWA and push notifications</li>
         <li>Real-time delivery via SignalR + RabbitMQ; data-intensive dashboards with Chart.js and AG Grid</li>
         <li>Migrated 4 projects from Angular 2 to 12</li>
+        <li><strong>2015–2017:</strong> wealth &amp; insurance portal (AngularJS, .NET Core, SignalR); reservation and social-feed e-services for a Swiss IT firm</li>
       </ul>
       <p class="stackline"><b>Stack:</b> Angular, TypeScript, .NET Core, C#, MongoDB, Redis, RabbitMQ, SignalR, JWT, PWA</p>
     </article>
 
     <article class="entry">
       <div class="entry-head">
-        <p class="entry-title">Earlier Career</p>
-        <span class="entry-date">2013 – 2017</span>
+        <p class="entry-title">Software Engineer <span class="org">· Databiz Software Limited</span></p>
+        <span class="entry-date">Jan 2013 – Apr 2015</span>
       </div>
       <ul class="pts">
-        <li><strong>Senior Software Engineer</strong> — Wealth &amp; insurance portal (2017): internal/external insurance portal; AngularJS + .NET Core microservices, SignalR real-time</li>
-        <li><strong>Software Engineer</strong> — E-services for a Swiss IT firm (2016): reservation platform, social-feed aggregation, public statistics dashboards</li>
-        <li><strong>Developer</strong> — Bangladeshi computer retailer (2013–2015): end-to-end supply-chain ERP — inventory, RMA, sales, POS, accounts, PMS</li>
+        <li>Built a supply-chain ERP for a Bangladeshi computer retailer (inventory, RMA, sales, POS, accounts) and an inventory system — ASP.NET MVC, SQL Server, AngularJS</li>
       </ul>
     </article>
   </section>

@@ -23,7 +23,7 @@ ahasan09.github.io/
 ## Sections
 - Hero with avatar, code card mock (`engineer.ts`), and CTA buttons
 - Impact with stats grid and "How I work / How I build now" highlights
-- Experience timeline (Cefalo, SELISE, earlier roles)
+- Experience timeline (Cefalo, SELISE, Databiz) — one entry per employer with full tenure; the title is the final one, with a promotion line underneath
 - Stack grouped into Frontend, Backend, Data & messaging, Cloud & delivery, Quality & practice
 - Case Studies grid linking to `case-studies/*.html`
 - Education & Certification cards (incl. Claude Certified Architect – Foundations, Nov 2026, Credly link)
