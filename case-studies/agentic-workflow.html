@@ -182,7 +182,7 @@
       <p>To make every agent session behave the same way, I wrote the <code>CLAUDE.md</code> conventions for the monorepo and its nine module directories, the team's Jira ticket-creation skill and the i18n authoring rule, and adapted shared PRD, task-breakdown and plan-interrogation skills.</p>
 
       <h2 id="outcome">Outcome</h2>
-      <p>My commit throughput rose from about 44 to more than 200 a month once the pipeline was in place, and the pipeline catches more complex defects than the previous manual process did.</p>
+      <p>The pipeline catches more complex defects than the previous manual process did.</p>
       <p>The honest trade-off is that the bottleneck moved rather than disappeared: review now takes up more of my time than writing code used to. The pipeline also isn't perfect — it sometimes misses edge cases, and those get caught in my review rather than before it. The mitigation that's worked is investing more in the plan stage: a more thorough, "perfect" plan measurably reduces how often edge cases get missed later on. The whole team now works this way.</p>
       <p>Related tooling grew out of the same work: an i18n engine that gives translation strings stable identifiers, which removed a recurring class of merge conflicts; AI-assisted generation of Angular unit tests and Playwright E2E specs; and design-to-code from Figma through MCP.</p>
     </article>
